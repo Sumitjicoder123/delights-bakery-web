@@ -21,7 +21,7 @@ export const everydayCakes: Cake[] = [
     "dietary": [
       "100% Eggless"
     ],
-    "image": "/cakes/BlackForest 400.jpeg"
+    "image": "/cakes/BlackForest%20400.jpeg"
   },
   {
     "id": "butterscotch-crunch",
@@ -35,7 +35,7 @@ export const everydayCakes: Cake[] = [
     "dietary": [
       "100% Eggless"
     ],
-    "image": "/cakes/Butterscotch crunch 380.jpeg"
+    "image": "/cakes/Butterscotch%20crunch%20380.jpeg"
   },
   {
     "id": "chocho-bronze",
@@ -49,7 +49,7 @@ export const everydayCakes: Cake[] = [
     "dietary": [
       "100% Eggless"
     ],
-    "image": "/cakes/Chocho Bronze 350.jpeg"
+    "image": "/cakes/Chocho%20Bronze%20350.jpeg"
   },
   {
     "id": "chocholate-crunch",
@@ -63,7 +63,7 @@ export const everydayCakes: Cake[] = [
     "dietary": [
       "100% Eggless"
     ],
-    "image": "/cakes/Chocholate Crunch 450.jpeg"
+    "image": "/cakes/Chocholate%20Crunch%20450.jpeg"
   },
   {
     "id": "chocholate-flex",
@@ -77,7 +77,7 @@ export const everydayCakes: Cake[] = [
     "dietary": [
       "100% Eggless"
     ],
-    "image": "/cakes/Chocholate Flex 450.jpeg"
+    "image": "/cakes/Chocholate%20Flex%20450.jpeg"
   },
   {
     "id": "chocholate-truffle",
@@ -91,7 +91,7 @@ export const everydayCakes: Cake[] = [
     "dietary": [
       "100% Eggless"
     ],
-    "image": "/cakes/Chocholate Truffle 500.jpeg"
+    "image": "/cakes/Chocholate%20Truffle%20500.jpeg"
   },
   {
     "id": "choco-caremel",
@@ -105,7 +105,7 @@ export const everydayCakes: Cake[] = [
     "dietary": [
       "100% Eggless"
     ],
-    "image": "/cakes/Choco Caremel 380 (2).jpeg"
+    "image": "/cakes/Choco%20Caremel%20380%20(2).jpeg"
   },
   {
     "id": "choco-caremel",
@@ -119,7 +119,7 @@ export const everydayCakes: Cake[] = [
     "dietary": [
       "100% Eggless"
     ],
-    "image": "/cakes/Choco Caremel 380.jpeg"
+    "image": "/cakes/Choco%20Caremel%20380.jpeg"
   },
   {
     "id": "choco-chips",
@@ -133,7 +133,7 @@ export const everydayCakes: Cake[] = [
     "dietary": [
       "100% Eggless"
     ],
-    "image": "/cakes/Choco Chips 400.jpeg"
+    "image": "/cakes/Choco%20Chips%20400.jpeg"
   },
   {
     "id": "choco-delight",
@@ -147,7 +147,7 @@ export const everydayCakes: Cake[] = [
     "dietary": [
       "100% Eggless"
     ],
-    "image": "/cakes/Choco Delight 380.jpeg"
+    "image": "/cakes/Choco%20Delight%20380.jpeg"
   },
   {
     "id": "choco-excellent",
@@ -161,7 +161,7 @@ export const everydayCakes: Cake[] = [
     "dietary": [
       "100% Eggless"
     ],
-    "image": "/cakes/Choco Excellent 400.jpeg"
+    "image": "/cakes/Choco%20Excellent%20400.jpeg"
   },
   {
     "id": "choco-vanilla",
@@ -175,7 +175,7 @@ export const everydayCakes: Cake[] = [
     "dietary": [
       "100% Eggless"
     ],
-    "image": "/cakes/Choco vanilla 300.jpeg"
+    "image": "/cakes/Choco%20vanilla%20300.jpeg"
   },
   {
     "id": "choco-zebra",
@@ -189,7 +189,35 @@ export const everydayCakes: Cake[] = [
     "dietary": [
       "100% Eggless"
     ],
-    "image": "/cakes/Choco Zebra 380.jpeg"
+    "image": "/cakes/Choco%20Zebra%20380.jpeg"
+  },
+  {
+    "id": "dutch-chocolate-",
+    "name": "Dutch-chocolate-",
+    "description": "100% Pure Veg & Eggless fresh cake prepared daily.",
+    "basePrice": 450,
+    "weightOptions": [
+      "0.5 kg",
+      "1 kg"
+    ],
+    "dietary": [
+      "100% Eggless"
+    ],
+    "image": "/cakes/dutch-chocolate-450.jpg"
+  },
+  {
+    "id": "fresh-mango-",
+    "name": "Fresh-mango-",
+    "description": "100% Pure Veg & Eggless fresh cake prepared daily.",
+    "basePrice": 550,
+    "weightOptions": [
+      "0.5 kg",
+      "1 kg"
+    ],
+    "dietary": [
+      "100% Eggless"
+    ],
+    "image": "/cakes/fresh-mango-550.jpg"
   },
   {
     "id": "fruit-delight",
@@ -203,7 +231,7 @@ export const everydayCakes: Cake[] = [
     "dietary": [
       "100% Eggless"
     ],
-    "image": "/cakes/Fruit Delight 500.jpeg"
+    "image": "/cakes/Fruit%20Delight%20500.jpeg"
   },
   {
     "id": "kitkatchoccholate",
@@ -217,7 +245,7 @@ export const everydayCakes: Cake[] = [
     "dietary": [
       "100% Eggless"
     ],
-    "image": "/cakes/KitkatChoccholate 750.jpeg"
+    "image": "/cakes/KitkatChoccholate%20750.jpeg"
   },
   {
     "id": "melting-moment",
@@ -231,7 +259,7 @@ export const everydayCakes: Cake[] = [
     "dietary": [
       "100% Eggless"
     ],
-    "image": "/cakes/Melting moment 550.jpeg"
+    "image": "/cakes/Melting%20moment%20550.jpeg"
   },
   {
     "id": "mud-chocholate",
@@ -245,7 +273,7 @@ export const everydayCakes: Cake[] = [
     "dietary": [
       "100% Eggless"
     ],
-    "image": "/cakes/Mud Chocholate 300.jpeg"
+    "image": "/cakes/Mud%20Chocholate%20300.jpeg"
   },
   {
     "id": "nutella-chocholate",
@@ -259,7 +287,7 @@ export const everydayCakes: Cake[] = [
     "dietary": [
       "100% Eggless"
     ],
-    "image": "/cakes/Nutella Chocholate 500.jpeg"
+    "image": "/cakes/Nutella%20Chocholate%20500.jpeg"
   },
   {
     "id": "redvelvet",
@@ -273,7 +301,7 @@ export const everydayCakes: Cake[] = [
     "dietary": [
       "100% Eggless"
     ],
-    "image": "/cakes/RedVelvet 450.jpeg"
+    "image": "/cakes/RedVelvet%20450.jpeg"
   },
   {
     "id": "royal-chocholate",
@@ -287,7 +315,7 @@ export const everydayCakes: Cake[] = [
     "dietary": [
       "100% Eggless"
     ],
-    "image": "/cakes/Royal Chocholate 750.jpeg"
+    "image": "/cakes/Royal%20Chocholate%20750.jpeg"
   },
   {
     "id": "strawberry-chocholate",
@@ -301,7 +329,7 @@ export const everydayCakes: Cake[] = [
     "dietary": [
       "100% Eggless"
     ],
-    "image": "/cakes/Strawberry Chocholate.jpeg"
+    "image": "/cakes/Strawberry%20Chocholate.jpeg"
   },
   {
     "id": "whiteforest",
@@ -315,7 +343,7 @@ export const everydayCakes: Cake[] = [
     "dietary": [
       "100% Eggless"
     ],
-    "image": "/cakes/WhiteForest 400.jpeg"
+    "image": "/cakes/WhiteForest%20400.jpeg"
   }
 ];
 
@@ -384,6 +412,16 @@ export const customFlavors = [
     "id": "choco-zebra",
     "label": "Choco Zebra",
     "basePrice": 380
+  },
+  {
+    "id": "dutch-chocolate-",
+    "label": "Dutch-chocolate-",
+    "basePrice": 450
+  },
+  {
+    "id": "fresh-mango-",
+    "label": "Fresh-mango-",
+    "basePrice": 550
   },
   {
     "id": "fruit-delight",

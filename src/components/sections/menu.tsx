@@ -71,14 +71,14 @@ export function MenuSection() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {everydayCakes.map((cake) => (
             <Card key={cake.id} className="overflow-hidden border-border/50 hover:border-primary/30 transition-colors flex flex-col">
-              <div className="relative h-56 sm:h-64 w-full">
+              <div className="relative w-full aspect-[4/3] overflow-hidden rounded-t-xl bg-amber-50/50">
                 <Image 
                   src={cake.image} 
                   alt={cake.name} 
                   fill
-                  className="object-cover"
+                  className="w-full h-full object-cover object-center transition-transform duration-300 hover:scale-105"
                 />
-                <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm text-green-700 text-xs font-bold px-3 py-1 rounded-full shadow-sm">
+                <div className="absolute top-3 right-3 z-10 bg-white/90 backdrop-blur-sm text-green-700 text-xs font-bold px-3 py-1 rounded-full shadow-sm">
                   {cake.dietary[0]}
                 </div>
               </div>
