@@ -45,10 +45,10 @@ export function Header() {
 
       {/* Mobile Nav Drawer */}
       <div className={cn(
-        "fixed inset-x-0 bottom-0 top-16 z-40 bg-background flex flex-col items-center justify-center gap-8 md:hidden transition-all duration-300 ease-in-out",
-        isMobileMenuOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-full pointer-events-none hidden"
+        isMobileMenuOpen ? "flex" : "hidden",
+        "md:hidden fixed inset-0 top-[64px] bg-[#FFF9F3] z-50 flex-col items-center justify-start p-6 shadow-xl"
       )}>
-        <nav className="flex flex-col items-center gap-6 w-full px-6">
+        <nav className="flex flex-col items-center gap-6 w-full px-6 mt-8">
           <Link href="#daily-menu" onClick={() => setIsMobileMenuOpen(false)} className="text-2xl font-serif font-medium hover:text-primary/80 transition-colors">Daily Menu</Link>
           <Link href="#custom-builder" onClick={() => setIsMobileMenuOpen(false)} className="text-2xl font-serif font-medium hover:text-primary/80 transition-colors">Custom Cakes</Link>
           <Link href="#reviews" onClick={() => setIsMobileMenuOpen(false)} className="text-2xl font-serif font-medium hover:text-primary/80 transition-colors">Reviews</Link>

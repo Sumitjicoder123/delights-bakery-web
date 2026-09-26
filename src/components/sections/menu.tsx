@@ -47,7 +47,7 @@ export function MenuSection() {
 
     const deliveryString = orderData.deliveryMode === 'Home Delivery' 
       ? 'Home Delivery (Charges Extra as per Location)' 
-      : 'Store Pickup (Free)';
+      : 'In-Store Pickup';
       
     const addressString = orderData.deliveryMode === 'Home Delivery' && orderData.address 
       ? orderData.address 
@@ -172,7 +172,7 @@ export function MenuSection() {
                       orderData.deliveryMode === 'Store Pickup' ? "bg-secondary/20 border-secondary ring-1 ring-secondary" : "bg-card"
                     )}
                   >
-                    <span className="font-semibold text-primary">🏪 Store Pickup (Free)</span>
+                    <span className="font-semibold text-primary">🏪 In-Store Pickup</span>
                     <span className="text-xs font-normal text-muted-foreground">Abhilasha Residency Rd</span>
                   </button>
                   <button

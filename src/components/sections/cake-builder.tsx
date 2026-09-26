@@ -163,7 +163,7 @@ export function CustomCakeBuilder() {
     const nl = "\n"; // New line
     const deliveryString = data.deliveryMode === 'Delivery' 
       ? 'Home Delivery (Delivery charges extra as per distance)' 
-      : 'Store Pickup (Free)';
+      : 'In-Store Pickup';
       
     const addressString = data.deliveryMode === 'Delivery' && data.address 
       ? data.address 
@@ -427,7 +427,7 @@ export function CustomCakeBuilder() {
                       )}>
                         <div className="flex items-center gap-2">
                           <input type="radio" value="In-Store Pickup" {...register("deliveryMode")} className="accent-primary" />
-                          <span className="font-semibold text-primary">?? Store Pickup (Free)</span>
+                          <span className="font-semibold text-primary">?? In-Store Pickup</span>
                         </div>
                         <span className="text-xs font-normal text-muted-foreground ml-6">Abhilasha Residency Rd</span>
                       </label>
