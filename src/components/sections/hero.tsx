@@ -25,7 +25,7 @@ export function Hero() {
         
         <div className="flex-1 relative w-[320px] h-[320px] sm:w-[420px] sm:h-[420px] rounded-full overflow-hidden border-4 border-white/80 shadow-2xl z-10 mx-auto">
           <Image 
-            src="/cakes/KitkatChoccholate%20750.jpeg" 
+            src="/hero-cake.jpg" 
             alt="Beautiful custom chocolate layer cake" 
             fill
             className="w-full h-full object-cover object-center"

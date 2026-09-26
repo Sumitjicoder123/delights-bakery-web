@@ -80,20 +80,6 @@ export const everydayCakes: Cake[] = [
     "image": "/cakes/Chocholate%20Flex%20450.jpeg"
   },
   {
-    "id": "chocholate-truffle",
-    "name": "Chocholate Truffle",
-    "description": "100% Pure Veg & Eggless fresh cake prepared daily.",
-    "basePrice": 500,
-    "weightOptions": [
-      "0.5 kg",
-      "1 kg"
-    ],
-    "dietary": [
-      "100% Eggless"
-    ],
-    "image": "/cakes/Chocholate%20Truffle%20500.jpeg"
-  },
-  {
     "id": "choco-caremel",
     "name": "Choco Caremel",
     "description": "100% Pure Veg & Eggless fresh cake prepared daily.",
@@ -190,34 +176,6 @@ export const everydayCakes: Cake[] = [
       "100% Eggless"
     ],
     "image": "/cakes/Choco%20Zebra%20380.jpeg"
-  },
-  {
-    "id": "dutch-chocolate-",
-    "name": "Dutch-chocolate-",
-    "description": "100% Pure Veg & Eggless fresh cake prepared daily.",
-    "basePrice": 450,
-    "weightOptions": [
-      "0.5 kg",
-      "1 kg"
-    ],
-    "dietary": [
-      "100% Eggless"
-    ],
-    "image": "/cakes/dutch-chocolate-450.jpg"
-  },
-  {
-    "id": "fresh-mango-",
-    "name": "Fresh-mango-",
-    "description": "100% Pure Veg & Eggless fresh cake prepared daily.",
-    "basePrice": 550,
-    "weightOptions": [
-      "0.5 kg",
-      "1 kg"
-    ],
-    "dietary": [
-      "100% Eggless"
-    ],
-    "image": "/cakes/fresh-mango-550.jpg"
   },
   {
     "id": "fruit-delight",
@@ -374,11 +332,6 @@ export const customFlavors = [
     "basePrice": 450
   },
   {
-    "id": "chocholate-truffle",
-    "label": "Chocholate Truffle",
-    "basePrice": 500
-  },
-  {
     "id": "choco-caremel",
     "label": "Choco Caremel",
     "basePrice": 380
@@ -412,16 +365,6 @@ export const customFlavors = [
     "id": "choco-zebra",
     "label": "Choco Zebra",
     "basePrice": 380
-  },
-  {
-    "id": "dutch-chocolate-",
-    "label": "Dutch-chocolate-",
-    "basePrice": 450
-  },
-  {
-    "id": "fresh-mango-",
-    "label": "Fresh-mango-",
-    "basePrice": 550
   },
   {
     "id": "fruit-delight",
