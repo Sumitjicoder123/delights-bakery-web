@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
@@ -9,11 +9,42 @@ import { Textarea } from "@/components/ui/textarea";
 import { everydayCakes, Cake } from "@/data/cakes";
 import { cn } from "@/lib/utils";
 import { X } from "lucide-react";
+import { supabase } from "@/lib/supabase";
 
 export function MenuSection() {
   const [orderModalOpen, setOrderModalOpen] = useState(false);
   const [selectedCake, setSelectedCake] = useState<Cake | null>(null);
+  const [cakes, setCakes] = useState<Cake[]>(everydayCakes);
   
+  useEffect(() => {
+    async function fetchCakes() {
+      try {
+        const { data, error } = await supabase
+          .from('cakes')
+          .select('*')
+          .order('created_at', { ascending: true });
+          
+        if (!error && data && data.length > 0) {
+          // Map DB rows back to Cake interface format
+          const dbCakes = data.map((row: any) => ({
+            id: row.id,
+            name: row.name,
+            description: row.description,
+            basePrice: row.price || row.basePrice,
+            weightOptions: ["0.5 kg", "1 kg"], // fallback
+            dietary: ["100% Eggless"],
+            image: row.image_url || row.image,
+            in_stock: row.in_stock !== false // default to true if null
+          }));
+          setCakes(dbCakes);
+        }
+      } catch (err) {
+        console.error("Error fetching cakes from Supabase", err);
+      }
+    }
+    fetchCakes();
+  }, []);
+
   const [orderData, setOrderData] = useState({
     weight: "0.5 kg",
     message: "",
@@ -78,18 +109,25 @@ export function MenuSection() {
         </div>
 
         <div className="grid grid-cols-2 gap-3 sm:gap-6 lg:grid-cols-3">
-          {everydayCakes.map((cake) => (
-            <Card key={cake.id} className="overflow-hidden border-border/50 hover:border-primary/30 transition-colors flex flex-col">
+          {cakes.map((cake) => (
+            <Card key={cake.id} className={cn("overflow-hidden border-border/50 transition-colors flex flex-col", cake.in_stock === false ? "opacity-75" : "hover:border-primary/30")}>
               <div className="relative w-full aspect-square overflow-hidden rounded-t-xl bg-amber-50/50">
                 <Image 
                   src={cake.image} 
                   alt={cake.name} 
                   fill
-                  className="w-full h-full object-cover object-center transition-transform duration-300 hover:scale-105"
+                  className={cn("w-full h-full object-cover object-center transition-transform duration-300 hover:scale-105", cake.in_stock === false ? "grayscale" : "")}
                 />
                 <div className="absolute top-2 right-2 sm:top-3 sm:right-3 z-10 bg-white/95 backdrop-blur-sm text-green-700 text-[10px] sm:text-xs font-bold px-2 py-1 sm:px-3 rounded-full shadow-sm">
                   {cake.dietary[0]}
                 </div>
+                {cake.in_stock === false && (
+                  <div className="absolute inset-0 z-20 flex items-center justify-center bg-black/40 backdrop-blur-[2px]">
+                    <span className="bg-red-600 text-white font-bold px-4 py-2 rounded-full text-sm sm:text-base shadow-lg transform -rotate-12">
+                      Sold Out Today
+                    </span>
+                  </div>
+                )}
               </div>
               <div className="flex flex-col flex-1 p-2 sm:p-5">
                 <div className="flex flex-col sm:flex-row justify-between sm:items-start gap-1 sm:gap-2 mb-1 sm:mb-2">
@@ -98,12 +136,18 @@ export function MenuSection() {
                 </div>
                 <p className="hidden sm:block text-xs sm:text-sm text-muted-foreground line-clamp-2 flex-1 mb-4">{cake.description}</p>
                 <div className="mt-auto pt-2 sm:pt-0">
-                  <Button 
-                    onClick={() => openOrderModal(cake)}
-                    className="w-full h-8 sm:h-12 text-xs sm:text-base rounded-md sm:rounded-lg bg-green-600 hover:bg-green-700 text-white font-medium"
-                  >
-                    Quick Order
-                  </Button>
+                  {cake.in_stock === false ? (
+                    <Button disabled className="w-full h-8 sm:h-12 text-xs sm:text-base rounded-md sm:rounded-lg bg-stone-300 text-stone-500 font-medium">
+                      Currently Unavailable
+                    </Button>
+                  ) : (
+                    <Button 
+                      onClick={() => openOrderModal(cake)}
+                      className="w-full h-8 sm:h-12 text-xs sm:text-base rounded-md sm:rounded-lg bg-green-600 hover:bg-green-700 text-white font-medium"
+                    >
+                      Quick Order
+                    </Button>
+                  )}
                 </div>
               </div>
             </Card>

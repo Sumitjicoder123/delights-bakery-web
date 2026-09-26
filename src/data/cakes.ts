@@ -4,6 +4,7 @@ export type Cake = {
   description: string;
   basePrice: number;
   weightOptions: string[];
+  in_stock?: boolean;
   dietary: string[];
   image: string;
 };
