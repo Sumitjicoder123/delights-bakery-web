@@ -9,8 +9,6 @@ import { Textarea } from "@/components/ui/textarea";
 import { everydayCakes, Cake } from "@/data/cakes";
 import { cn } from "@/lib/utils";
 import { X } from "lucide-react";
-import { supabase } from "@/lib/supabase";
-
 export function MenuSection() {
   const [orderModalOpen, setOrderModalOpen] = useState(false);
   const [selectedCake, setSelectedCake] = useState<Cake | null>(null);
@@ -19,27 +17,15 @@ export function MenuSection() {
   useEffect(() => {
     async function fetchCakes() {
       try {
-        const { data, error } = await supabase
-          .from('cakes')
-          .select('*')
-          .order('created_at', { ascending: true });
-          
-        if (!error && data && data.length > 0) {
-          // Map DB rows back to Cake interface format
-          const dbCakes = data.map((row: any) => ({
-            id: row.id,
-            name: row.name,
-            description: row.description,
-            basePrice: row.price || row.basePrice,
-            weightOptions: ["0.5 kg", "1 kg"], // fallback
-            dietary: ["100% Eggless"],
-            image: row.image_url || row.image,
-            in_stock: row.in_stock !== false // default to true if null
-          }));
-          setCakes(dbCakes);
+        const res = await fetch('/api/cakes');
+        if (res.ok) {
+          const data = await res.json();
+          if (Array.isArray(data) && data.length > 0) {
+            setCakes(data);
+          }
         }
       } catch (err) {
-        console.error("Error fetching cakes from Supabase", err);
+        console.error("Error fetching cakes from API", err);
       }
     }
     fetchCakes();
@@ -110,13 +96,27 @@ export function MenuSection() {
 
         <div className="grid grid-cols-2 gap-3 sm:gap-6 lg:grid-cols-3">
           {cakes.map((cake) => (
-            <Card key={cake.id} className={cn("overflow-hidden border-border/50 transition-colors flex flex-col", cake.in_stock === false ? "opacity-75" : "hover:border-primary/30")}>
+            <Card 
+              key={cake.id} 
+              onClick={() => {
+                if (cake.in_stock !== false) {
+                  openOrderModal(cake);
+                }
+              }}
+              className={cn(
+                "overflow-hidden border-border/50 transition-all flex flex-col group", 
+                cake.in_stock === false 
+                  ? "opacity-75 cursor-not-allowed" 
+                  : "hover:border-primary/50 hover:shadow-md cursor-pointer"
+              )}
+            >
               <div className="relative w-full aspect-square overflow-hidden rounded-t-xl bg-amber-50/50">
                 <Image 
                   src={cake.image} 
                   alt={cake.name} 
                   fill
-                  className={cn("w-full h-full object-cover object-center transition-transform duration-300 hover:scale-105", cake.in_stock === false ? "grayscale" : "")}
+                  unoptimized={Boolean(cake.image && cake.image.startsWith('http'))}
+                  className={cn("w-full h-full object-cover object-center transition-transform duration-300 group-hover:scale-105", cake.in_stock === false ? "grayscale" : "")}
                 />
                 <div className="absolute top-2 right-2 sm:top-3 sm:right-3 z-10 bg-white/95 backdrop-blur-sm text-green-700 text-[10px] sm:text-xs font-bold px-2 py-1 sm:px-3 rounded-full shadow-sm">
                   {cake.dietary[0]}
@@ -131,7 +131,7 @@ export function MenuSection() {
               </div>
               <div className="flex flex-col flex-1 p-2 sm:p-5">
                 <div className="flex flex-col sm:flex-row justify-between sm:items-start gap-1 sm:gap-2 mb-1 sm:mb-2">
-                  <h3 className="text-sm sm:text-lg font-semibold font-serif truncate" title={cake.name}>{cake.name}</h3>
+                  <h3 className="text-sm sm:text-lg font-semibold font-serif truncate group-hover:text-primary transition-colors" title={cake.name}>{cake.name}</h3>
                   <span className="text-sm sm:text-lg font-bold text-amber-900">₹{cake.basePrice}</span>
                 </div>
                 <p className="hidden sm:block text-xs sm:text-sm text-muted-foreground line-clamp-2 flex-1 mb-4">{cake.description}</p>
@@ -142,10 +142,13 @@ export function MenuSection() {
                     </Button>
                   ) : (
                     <Button 
-                      onClick={() => openOrderModal(cake)}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        openOrderModal(cake);
+                      }}
                       className="w-full h-8 sm:h-12 text-xs sm:text-base rounded-md sm:rounded-lg bg-green-600 hover:bg-green-700 text-white font-medium"
                     >
-                      Quick Order
+                      Order Now
                     </Button>
                   )}
                 </div>
@@ -160,7 +163,7 @@ export function MenuSection() {
         <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm px-4">
           <div className="bg-background w-full max-w-md rounded-2xl shadow-xl overflow-hidden animate-in zoom-in-95 fade-in duration-200">
             <div className="flex justify-between items-center p-4 border-b">
-              <h3 className="font-serif text-xl font-bold">Quick Order</h3>
+              <h3 className="font-serif text-xl font-bold">Order Now</h3>
               <Button variant="ghost" size="icon" onClick={() => setOrderModalOpen(false)}>
                 <X className="w-5 h-5" />
               </Button>
@@ -168,8 +171,14 @@ export function MenuSection() {
             
             <form onSubmit={submitQuickOrder} className="p-6 space-y-5">
               <div className="flex items-center gap-4 mb-2">
-                <div className="relative w-16 h-16 rounded-md overflow-hidden">
-                  <Image src={selectedCake.image} alt={selectedCake.name} fill className="object-cover" />
+                <div className="relative w-16 h-16 rounded-md overflow-hidden shrink-0">
+                  <Image 
+                    src={selectedCake.image} 
+                    alt={selectedCake.name} 
+                    fill 
+                    unoptimized={Boolean(selectedCake.image && selectedCake.image.startsWith('http'))}
+                    className="object-cover" 
+                  />
                 </div>
                 <div>
                   <p className="font-bold">{selectedCake.name}</p>

@@ -1,0 +1,347 @@
+[
+  {
+    "id": "blackforest",
+    "name": "Black Forest",
+    "description": "100% Pure Veg & Eggless fresh cake prepared daily.",
+    "basePrice": 400,
+    "weightOptions": [
+      "0.5 kg",
+      "1 kg"
+    ],
+    "dietary": [
+      "100% Eggless"
+    ],
+    "image": "/cakes/BlackForest%20400.jpeg",
+    "in_stock": true
+  },
+  {
+    "id": "butterscotch-crunch",
+    "name": "Butterscotch Crunch",
+    "description": "100% Pure Veg & Eggless fresh cake prepared daily.",
+    "basePrice": 380,
+    "weightOptions": [
+      "0.5 kg",
+      "1 kg"
+    ],
+    "dietary": [
+      "100% Eggless"
+    ],
+    "image": "/cakes/Butterscotch%20crunch%20380.jpeg",
+    "in_stock": true
+  },
+  {
+    "id": "chocho-bronze",
+    "name": "Chocho Bronze",
+    "description": "100% Pure Veg & Eggless fresh cake prepared daily.",
+    "basePrice": 350,
+    "weightOptions": [
+      "0.5 kg",
+      "1 kg"
+    ],
+    "dietary": [
+      "100% Eggless"
+    ],
+    "image": "/cakes/Chocho%20Bronze%20350.jpeg",
+    "in_stock": true
+  },
+  {
+    "id": "chocholate-crunch",
+    "name": "Chocholate Crunch",
+    "description": "100% Pure Veg & Eggless fresh cake prepared daily.",
+    "basePrice": 450,
+    "weightOptions": [
+      "0.5 kg",
+      "1 kg"
+    ],
+    "dietary": [
+      "100% Eggless"
+    ],
+    "image": "/cakes/Chocholate%20Crunch%20450.jpeg",
+    "in_stock": true
+  },
+  {
+    "id": "chocholate-flex",
+    "name": "Chocholate Flex",
+    "description": "100% Pure Veg & Eggless fresh cake prepared daily.",
+    "basePrice": 450,
+    "weightOptions": [
+      "0.5 kg",
+      "1 kg"
+    ],
+    "dietary": [
+      "100% Eggless"
+    ],
+    "image": "/cakes/Chocholate%20Flex%20450.jpeg",
+    "in_stock": true
+  },
+  {
+    "id": "chocholate-truffle",
+    "name": "Chocholate Truffle",
+    "description": "100% Pure Veg & Eggless fresh cake prepared daily.",
+    "basePrice": 500,
+    "weightOptions": [
+      "0.5 kg",
+      "1 kg"
+    ],
+    "dietary": [
+      "100% Eggless"
+    ],
+    "image": "/cakes/Chocholate%20Truffle%20500.jpeg",
+    "in_stock": true
+  },
+  {
+    "id": "choco-caremel-1",
+    "name": "Choco Caremel Special",
+    "description": "100% Pure Veg & Eggless fresh cake prepared daily.",
+    "basePrice": 380,
+    "weightOptions": [
+      "0.5 kg",
+      "1 kg"
+    ],
+    "dietary": [
+      "100% Eggless"
+    ],
+    "image": "/cakes/Choco%20Caremel%20380%20(2).jpeg",
+    "in_stock": true
+  },
+  {
+    "id": "choco-caremel-2",
+    "name": "Choco Caremel",
+    "description": "100% Pure Veg & Eggless fresh cake prepared daily.",
+    "basePrice": 380,
+    "weightOptions": [
+      "0.5 kg",
+      "1 kg"
+    ],
+    "dietary": [
+      "100% Eggless"
+    ],
+    "image": "/cakes/Choco%20Caremel%20380.jpeg",
+    "in_stock": true
+  },
+  {
+    "id": "choco-chips",
+    "name": "Choco Chips",
+    "description": "100% Pure Veg & Eggless fresh cake prepared daily.",
+    "basePrice": 400,
+    "weightOptions": [
+      "0.5 kg",
+      "1 kg"
+    ],
+    "dietary": [
+      "100% Eggless"
+    ],
+    "image": "/cakes/Choco%20Chips%20400.jpeg",
+    "in_stock": true
+  },
+  {
+    "id": "choco-delight",
+    "name": "Choco Delight",
+    "description": "100% Pure Veg & Eggless fresh cake prepared daily.",
+    "basePrice": 380,
+    "weightOptions": [
+      "0.5 kg",
+      "1 kg"
+    ],
+    "dietary": [
+      "100% Eggless"
+    ],
+    "image": "/cakes/Choco%20Delight%20380.jpeg",
+    "in_stock": true
+  },
+  {
+    "id": "choco-excellent",
+    "name": "Choco Excellent",
+    "description": "100% Pure Veg & Eggless fresh cake prepared daily.",
+    "basePrice": 400,
+    "weightOptions": [
+      "0.5 kg",
+      "1 kg"
+    ],
+    "dietary": [
+      "100% Eggless"
+    ],
+    "image": "/cakes/Choco%20Excellent%20400.jpeg",
+    "in_stock": true
+  },
+  {
+    "id": "choco-vanilla",
+    "name": "Choco Vanilla",
+    "description": "100% Pure Veg & Eggless fresh cake prepared daily.",
+    "basePrice": 300,
+    "weightOptions": [
+      "0.5 kg",
+      "1 kg"
+    ],
+    "dietary": [
+      "100% Eggless"
+    ],
+    "image": "/cakes/Choco%20vanilla%20300.jpeg",
+    "in_stock": true
+  },
+  {
+    "id": "choco-zebra",
+    "name": "Choco Zebra",
+    "description": "100% Pure Veg & Eggless fresh cake prepared daily.",
+    "basePrice": 380,
+    "weightOptions": [
+      "0.5 kg",
+      "1 kg"
+    ],
+    "dietary": [
+      "100% Eggless"
+    ],
+    "image": "/cakes/Choco%20Zebra%20380.jpeg",
+    "in_stock": true
+  },
+  {
+    "id": "fruit-delight",
+    "name": "Fruit Delight",
+    "description": "100% Pure Veg & Eggless fresh cake prepared daily.",
+    "basePrice": 500,
+    "weightOptions": [
+      "0.5 kg",
+      "1 kg"
+    ],
+    "dietary": [
+      "100% Eggless"
+    ],
+    "image": "/cakes/Fruit%20Delight%20500.jpeg",
+    "in_stock": true
+  },
+  {
+    "id": "kitkatchoccholate",
+    "name": "Kitkat Choccholate",
+    "description": "100% Pure Veg & Eggless fresh cake prepared daily.",
+    "basePrice": 750,
+    "weightOptions": [
+      "0.5 kg",
+      "1 kg"
+    ],
+    "dietary": [
+      "100% Eggless"
+    ],
+    "image": "/cakes/KitkatChoccholate%20750.jpeg",
+    "in_stock": true
+  },
+  {
+    "id": "melting-moment",
+    "name": "Melting Moment",
+    "description": "100% Pure Veg & Eggless fresh cake prepared daily.",
+    "basePrice": 550,
+    "weightOptions": [
+      "0.5 kg",
+      "1 kg"
+    ],
+    "dietary": [
+      "100% Eggless"
+    ],
+    "image": "/cakes/Melting%20moment%20550.jpeg",
+    "in_stock": true
+  },
+  {
+    "id": "mud-chocholate",
+    "name": "Mud Chocholate",
+    "description": "100% Pure Veg & Eggless fresh cake prepared daily.",
+    "basePrice": 300,
+    "weightOptions": [
+      "0.5 kg",
+      "1 kg"
+    ],
+    "dietary": [
+      "100% Eggless"
+    ],
+    "image": "/cakes/Mud%20Chocholate%20300.jpeg",
+    "in_stock": true
+  },
+  {
+    "id": "nutella-chocholate",
+    "name": "Nutella Chocholate",
+    "description": "100% Pure Veg & Eggless fresh cake prepared daily.",
+    "basePrice": 500,
+    "weightOptions": [
+      "0.5 kg",
+      "1 kg"
+    ],
+    "dietary": [
+      "100% Eggless"
+    ],
+    "image": "/cakes/Nutella%20Chocholate%20500.jpeg",
+    "in_stock": true
+  },
+  {
+    "id": "redvelvet",
+    "name": "Red Velvet",
+    "description": "100% Pure Veg & Eggless fresh cake prepared daily.",
+    "basePrice": 450,
+    "weightOptions": [
+      "0.5 kg",
+      "1 kg"
+    ],
+    "dietary": [
+      "100% Eggless"
+    ],
+    "image": "/cakes/RedVelvet%20450.jpeg",
+    "in_stock": true
+  },
+  {
+    "id": "royal-chocholate",
+    "name": "Royal Chocholate",
+    "description": "100% Pure Veg & Eggless fresh cake prepared daily.",
+    "basePrice": 750,
+    "weightOptions": [
+      "0.5 kg",
+      "1 kg"
+    ],
+    "dietary": [
+      "100% Eggless"
+    ],
+    "image": "/cakes/Royal%20Chocholate%20750.jpeg",
+    "in_stock": true
+  },
+  {
+    "id": "strawberry-chocholate",
+    "name": "Strawberry Chocholate",
+    "description": "100% Pure Veg & Eggless fresh cake prepared daily.",
+    "basePrice": 450,
+    "weightOptions": [
+      "0.5 kg",
+      "1 kg"
+    ],
+    "dietary": [
+      "100% Eggless"
+    ],
+    "image": "/cakes/Strawberry%20Chocholate.jpeg",
+    "in_stock": true
+  },
+  {
+    "id": "whiteforest",
+    "name": "White Forest",
+    "description": "100% Pure Veg & Eggless fresh cake prepared daily.",
+    "basePrice": 400,
+    "weightOptions": [
+      "0.5 kg",
+      "1 kg"
+    ],
+    "dietary": [
+      "100% Eggless"
+    ],
+    "image": "/cakes/WhiteForest%20400.jpeg",
+    "in_stock": true
+  },
+  {
+    "id": "cake-1790456301994",
+    "name": "sing",
+    "description": "100% Pure Veg & Eggless fresh cake prepared daily.",
+    "basePrice": 3939,
+    "weightOptions": [
+      "0.5 kg",
+      "1 kg"
+    ],
+    "dietary": [
+      "100% Eggless"
+    ],
+    "image": "https://tse1.mm.bing.net/th/id/OIP._vFhp4PlmDjOzFomMKxSwgHaE8?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
+    "in_stock": true
+  }
+]

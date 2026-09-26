@@ -2,12 +2,10 @@
 
 import { useState } from "react";
 import { Star, CheckCircle2 } from "lucide-react";
-import { Button } from "@/components/ui/button";
 
 export function ReviewsSection() {
   const [rating, setRating] = useState(0);
   const [toastMessage, setToastMessage] = useState("");
-  const [showFeedbackCard, setShowFeedbackCard] = useState(false);
 
   const googleReviewUrl = "https://www.google.com/search?q=Delights+Cakes+Mira+Road+Reviews#lrd=0x0:0x0,3,,,";
   const whatsappNumber = "919819134616";
@@ -15,17 +13,21 @@ export function ReviewsSection() {
 
   const handleStarClick = (star: number) => {
     setRating(star);
-    setShowFeedbackCard(false);
 
-    if (star >= 4) {
+    if (star > 3) {
       setToastMessage("Thank you! Opening Google to post your review...");
+      window.open(googleReviewUrl, "_blank");
       setTimeout(() => {
-        window.open(googleReviewUrl, "_blank");
         setToastMessage("");
-        setRating(0); // Reset after action
-      }, 1500);
+        setRating(0);
+      }, 2000);
     } else {
-      setShowFeedbackCard(true);
+      setToastMessage("Thank you for your feedback! Opening WhatsApp to assist you...");
+      window.open(whatsappFallbackUrl, "_blank");
+      setTimeout(() => {
+        setToastMessage("");
+        setRating(0);
+      }, 2000);
     }
   };
 
@@ -48,38 +50,20 @@ export function ReviewsSection() {
           <h2 className="text-3xl md:text-4xl font-bold font-serif text-[#4A2E18] mb-3">Loved Our Cakes? Share Your Sweet Experience!</h2>
           <p className="text-muted-foreground mb-8 text-lg">Your review helps our local pure-veg bakery in Mira Road grow.</p>
           
-          <div className="flex justify-center items-center gap-2 sm:gap-4 mb-8">
+          <div className="flex justify-center items-center gap-2 sm:gap-4 mb-2">
             {[1, 2, 3, 4, 5].map((star) => (
               <button
                 key={star}
                 type="button"
                 onClick={() => handleStarClick(star)}
                 className="focus:outline-none transition-transform hover:scale-110 active:scale-95"
+                title={`${star} Star${star > 1 ? 's' : ''}`}
               >
                 <Star 
                   className={`w-12 h-12 sm:w-16 sm:h-16 ${rating >= star ? 'fill-[#D97706] text-[#D97706]' : 'text-gray-200 hover:text-gray-300'}`} 
                 />
               </button>
             ))}
-          </div>
-
-          {showFeedbackCard && (
-            <div className="bg-red-50 border border-red-100 rounded-xl p-6 mb-8 max-w-lg mx-auto animate-in fade-in slide-in-from-top-4 duration-300">
-              <p className="text-red-800 font-medium mb-4">We're sorry your experience wasn't sweet. Please message the owner directly so we can make it right!</p>
-              <Button asChild className="w-full sm:w-auto rounded-full bg-[#25D366] hover:bg-[#128C7E] text-white font-medium shadow-sm">
-                <a href={whatsappFallbackUrl} target="_blank" rel="noopener noreferrer">
-                  Message Owner on WhatsApp
-                </a>
-              </Button>
-            </div>
-          )}
-
-          <div className="flex justify-center">
-            <Button asChild size="lg" className="rounded-full bg-blue-600 hover:bg-blue-700 text-white font-medium shadow-sm w-full sm:w-auto h-12 px-8 text-base">
-              <a href={googleReviewUrl} target="_blank" rel="noopener noreferrer">
-                ★ Write a Review on Google
-              </a>
-            </Button>
           </div>
         </div>
 
