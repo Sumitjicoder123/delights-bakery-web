@@ -1,88 +1,102 @@
 "use client";
 
-import { useState } from "react";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { CakeSlice, Menu, X } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { useState } from 'react';
+import Link from 'next/link';
 
 export function Header() {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container mx-auto flex h-16 items-center justify-between px-4 sm:px-6">
-        <div className="flex items-center gap-2 z-50">
-          <CakeSlice className="h-6 w-6 text-primary" />
-          <Link href="/" className="flex flex-col" onClick={() => setIsMobileMenuOpen(false)}>
-            <span className="font-serif text-xl font-bold leading-tight text-primary">Delights</span>
-            <span className="text-[10px] uppercase tracking-widest text-muted-foreground">Best Cakes in Mira Road</span>
+    <>
+      <header className="sticky top-0 z-50 w-full bg-[#FFF9F3] border-b border-amber-100 shadow-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+          
+          {/* Logo */}
+          <Link className="flex items-center space-x-2" href="/">
+            <span className="text-2xl">🎂</span>
+            <div>
+              <span className="text-xl font-bold tracking-tight text-[#4A2E18] block leading-none">Delights</span>
+              <span className="text-[10px] uppercase tracking-wider text-amber-800 font-medium">Best Cakes in Mira Road</span>
+            </div>
           </Link>
-        </div>
-        
-        {/* Desktop Nav */}
-        <nav className="hidden md:flex gap-6 items-center">
-          <Link href="#daily-menu" className="text-sm font-medium hover:text-primary/80 transition-colors">Daily Menu</Link>
-          <Link href="#custom-builder" className="text-sm font-medium hover:text-primary/80 transition-colors">Custom Cakes</Link>
-          <Link href="#reviews" className="text-sm font-medium hover:text-primary/80 transition-colors">Reviews</Link>
-          <Link href="#contact" className="text-sm font-medium hover:text-primary/80 transition-colors">Contact</Link>
-        </nav>
-        
-        <div className="flex items-center gap-2 md:gap-4 z-50">
-          <Button asChild className="rounded-full h-8 px-4 text-xs sm:text-sm sm:h-10 sm:px-6">
-            <Link href="#custom-builder">Order Cake</Link>
-          </Button>
-          <Button 
-            variant="ghost" 
-            size="icon" 
-            className="md:hidden h-10 w-10"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          >
-            {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </Button>
-        </div>
-      </div>
 
-      {/* Mobile Nav Drawer */}
-      {isMobileMenuOpen && (
-        <div className="fixed inset-0 top-[60px] z-[999] bg-[#FFF9F3] flex flex-col items-center justify-start pt-10 px-6 space-y-6 shadow-2xl md:hidden">
-          <a 
-            href="#daily-menu" 
-            onClick={() => setIsMobileMenuOpen(false)}
-            className="text-lg font-semibold text-[#4A2E18] py-2 border-b border-amber-200/50 w-full text-center"
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center space-x-8">
+            <Link className="text-sm font-medium text-stone-700 hover:text-amber-800 transition" href="#daily-menu">
+              Daily Menu
+            </Link>
+            <Link className="text-sm font-medium text-stone-700 hover:text-amber-800 transition" href="#custom-builder">
+              Custom Cakes
+            </Link>
+            <Link className="text-sm font-medium text-stone-700 hover:text-amber-800 transition" href="#reviews">
+              Reviews
+            </Link>
+            <Link className="text-sm font-medium text-stone-700 hover:text-amber-800 transition" href="#contact">
+              Contact
+            </Link>
+            <Link className="bg-[#4A2E18] text-white text-xs font-semibold px-4 py-2 rounded-full hover:bg-stone-800 transition shadow" href="#custom-builder">
+              Order Cake
+            </Link>
+          </nav>
+
+          {/* Mobile Right Controls: Order Cake Pill + Hamburger Toggle */}
+          <div className="flex items-center space-x-2 md:hidden">
+            <Link className="bg-[#4A2E18] text-white text-xs font-semibold px-3 py-1.5 rounded-full" href="#daily-menu">
+              Order Cake
+            </Link>
+
+            <button
+              type="button"
+              onClick={() => setIsOpen(!isOpen)}
+              className="p-2 rounded-md text-[#4A2E18] hover:bg-amber-100 focus:outline-none"
+              aria-label="Toggle Menu"
+            >
+              {isOpen ? (
+                // Close X Icon
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              ) : (
+                // Hamburger Icon
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+              )}
+            </button>
+          </div>
+        </div>
+      </header>
+
+      {/* Mobile Drawer (Only renders when isOpen is true, perfectly opaque background) */}
+      {isOpen && (
+        <div className="fixed inset-0 top-16 z-40 bg-[#FFF9F3] flex flex-col items-center justify-start pt-8 px-6 space-y-6 md:hidden">
+          <Link href="#daily-menu" onClick={() => setIsOpen(false)}
+            className="text-lg font-semibold text-[#4A2E18] py-2 border-b border-amber-200/60 w-full text-center"
           >
             Daily Fresh Cakes
-          </a>
-          <a 
-            href="#custom-builder" 
-            onClick={() => setIsMobileMenuOpen(false)}
-            className="text-lg font-semibold text-[#4A2E18] py-2 border-b border-amber-200/50 w-full text-center"
+          </Link>
+          <Link href="#custom-builder" onClick={() => setIsOpen(false)}
+            className="text-lg font-semibold text-[#4A2E18] py-2 border-b border-amber-200/60 w-full text-center"
           >
             Custom Celebration Cakes
-          </a>
-          <a 
-            href="#reviews" 
-            onClick={() => setIsMobileMenuOpen(false)}
-            className="text-lg font-semibold text-[#4A2E18] py-2 border-b border-amber-200/50 w-full text-center"
+          </Link>
+          <Link href="#reviews" onClick={() => setIsOpen(false)}
+            className="text-lg font-semibold text-[#4A2E18] py-2 border-b border-amber-200/60 w-full text-center"
           >
-            Reviews
-          </a>
-          <a 
-            href="#contact" 
-            onClick={() => setIsMobileMenuOpen(false)}
-            className="text-lg font-semibold text-[#4A2E18] py-2 border-b border-amber-200/50 w-full text-center"
+            Google Reviews
+          </Link>
+          <Link href="#contact" onClick={() => setIsOpen(false)}
+            className="text-lg font-semibold text-[#4A2E18] py-2 border-b border-amber-200/60 w-full text-center"
           >
-            Contact & Hours
-          </a>
-          <a 
-            href="#custom-builder"
-            onClick={() => setIsMobileMenuOpen(false)}
+            Contact & Location
+          </Link>
+          <Link href="#custom-builder" onClick={() => setIsOpen(false)}
             className="w-full max-w-xs py-3 bg-[#4A2E18] text-white font-medium rounded-full text-center shadow-lg mt-4"
           >
             Design Custom Cake
-          </a>
+          </Link>
         </div>
       )}
-    </header>
+    </>
   );
 }
