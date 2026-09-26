@@ -27,16 +27,25 @@ export function Header() {
     };
   }, [isOpen]);
 
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+    e.preventDefault();
     setIsOpen(false);
-    if (href.startsWith('#')) {
-      e.preventDefault();
-      const targetId = href.substring(1);
-      const elem = document.getElementById(targetId);
-      if (elem) {
-        elem.scrollIntoView({ behavior: 'smooth' });
+
+    // Unlock body immediately
+    document.body.style.overflow = '';
+    document.body.style.position = '';
+    document.body.style.width = '';
+    document.body.style.top = '';
+
+    // Small timeout to allow state update and DOM unfreeze, then smooth scroll
+    setTimeout(() => {
+      const element = document.getElementById(targetId.replace('#', ''));
+      if (element) {
+        const yOffset = -70; // Header height offset
+        const y = element.getBoundingClientRect().top + window.scrollY + yOffset;
+        window.scrollTo({ top: y, behavior: 'smooth' });
       }
-    }
+    }, 60);
   };
 
   return (
@@ -103,27 +112,27 @@ export function Header() {
       {/* Mobile Drawer (Only renders when isOpen is true, perfectly opaque background) */}
       {isOpen && (
         <div className="fixed inset-0 top-16 z-[999] bg-[#FFF9F3] flex flex-col items-center justify-start pt-8 px-6 space-y-6 md:hidden">
-          <a href="#daily-menu" onClick={(e) => handleNavClick(e, '#daily-menu')}
+          <a href="#daily-menu" onClick={(e) => scrollToSection(e, '#daily-menu')}
             className="text-lg font-semibold text-[#4A2E18] py-2 border-b border-amber-200/60 w-full text-center"
           >
             Daily Fresh Cakes
           </a>
-          <a href="#custom-builder" onClick={(e) => handleNavClick(e, '#custom-builder')}
+          <a href="#custom-builder" onClick={(e) => scrollToSection(e, '#custom-builder')}
             className="text-lg font-semibold text-[#4A2E18] py-2 border-b border-amber-200/60 w-full text-center"
           >
             Custom Celebration Cakes
           </a>
-          <a href="#reviews" onClick={(e) => handleNavClick(e, '#reviews')}
+          <a href="#reviews" onClick={(e) => scrollToSection(e, '#reviews')}
             className="text-lg font-semibold text-[#4A2E18] py-2 border-b border-amber-200/60 w-full text-center"
           >
             Google Reviews
           </a>
-          <a href="#contact" onClick={(e) => handleNavClick(e, '#contact')}
+          <a href="#contact" onClick={(e) => scrollToSection(e, '#contact')}
             className="text-lg font-semibold text-[#4A2E18] py-2 border-b border-amber-200/60 w-full text-center"
           >
             Contact & Location
           </a>
-          <a href="#custom-builder" onClick={(e) => handleNavClick(e, '#custom-builder')}
+          <a href="#custom-builder" onClick={(e) => scrollToSection(e, '#custom-builder')}
             className="w-full max-w-xs py-3 bg-[#4A2E18] text-white font-medium rounded-full text-center shadow-lg mt-4"
           >
             Design Custom Cake
