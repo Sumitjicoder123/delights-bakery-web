@@ -45,14 +45,23 @@ export function MenuSection() {
     const priceMultiplier = orderData.weight === "1 kg" ? 2 : 1;
     const finalPrice = selectedCake.basePrice * priceMultiplier;
 
-    const messageStr = `⚡ *TODAY'S CAKE ORDER (SAME-DAY) - DELIGHTS*${nl}` +
-      `• *Item:* ${selectedCake.name} (${orderData.weight} - Eggless)${nl}` +
-      `• *Price:* ₹${finalPrice}${nl}` +
+    const deliveryString = orderData.deliveryMode === 'Home Delivery' 
+      ? 'Home Delivery (Charges Extra as per Location)' 
+      : 'Store Pickup (Free)';
+      
+    const addressString = orderData.deliveryMode === 'Home Delivery' && orderData.address 
+      ? orderData.address 
+      : 'In-Store Pickup';
+
+    const messageStr = `⚡ *TODAY'S CAKE ORDER - DELIGHTS*${nl}` +
+      `• *Cake:* ${selectedCake.name}${nl}` +
+      `• *Weight:* ${orderData.weight} (100% Eggless)${nl}` +
+      `• *Cake Price:* ₹${finalPrice}${nl}` +
       `• *Message on Cake:* "${orderData.message || 'None'}"${nl}` +
-      `• *Delivery Mode:* ${orderData.deliveryMode}${orderData.deliveryMode === 'Home Delivery' && orderData.address ? ` to ${orderData.address}` : ''}${nl}` +
+      `• *Fulfillment:* ${deliveryString}${nl}` +
+      `• *Address:* ${addressString}${nl}` +
       `• *Customer:* ${orderData.customerName} (${orderData.customerPhone})${nl}` +
-      `• *Need By:* Today ASAP${nl}` +
-      `*(Please confirm availability in your display counter!)*`;
+      `*(Please confirm counter availability & final total with delivery charges!)*`;
 
     window.open(`https://wa.me/${shopPhone}?text=${encodeURIComponent(messageStr)}`, "_blank");
     setOrderModalOpen(false);
@@ -154,28 +163,44 @@ export function MenuSection() {
 
               <div>
                 <label className="block text-sm font-medium mb-2">Delivery Preference</label>
-                <div className="flex gap-2 mb-3">
-                  {["In-Store Pickup", "Home Delivery"].map(mode => (
-                    <button
-                      key={mode}
-                      type="button"
-                      onClick={() => setOrderData({ ...orderData, deliveryMode: mode })}
-                      className={cn(
-                        "flex-1 py-2 rounded-md border text-sm font-medium transition-colors",
-                        orderData.deliveryMode === mode ? "bg-secondary text-secondary-foreground border-secondary" : "bg-card"
-                      )}
-                    >
-                      {mode}
-                    </button>
-                  ))}
+                <div className="flex flex-col gap-2 mb-3">
+                  <button
+                    type="button"
+                    onClick={() => setOrderData({ ...orderData, deliveryMode: 'Store Pickup' })}
+                    className={cn(
+                      "text-left p-3 rounded-md border text-sm font-medium transition-colors flex flex-col gap-1",
+                      orderData.deliveryMode === 'Store Pickup' ? "bg-secondary/20 border-secondary ring-1 ring-secondary" : "bg-card"
+                    )}
+                  >
+                    <span className="font-semibold text-primary">🏪 Store Pickup (Free)</span>
+                    <span className="text-xs font-normal text-muted-foreground">Abhilasha Residency Rd</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setOrderData({ ...orderData, deliveryMode: 'Home Delivery' })}
+                    className={cn(
+                      "text-left p-3 rounded-md border text-sm font-medium transition-colors flex flex-col gap-1",
+                      orderData.deliveryMode === 'Home Delivery' ? "bg-secondary/20 border-secondary ring-1 ring-secondary" : "bg-card"
+                    )}
+                  >
+                    <span className="font-semibold text-primary">🛵 Home Delivery</span>
+                    <span className="text-xs font-normal text-muted-foreground">Delivery charges extra as per distance</span>
+                  </button>
                 </div>
                 {orderData.deliveryMode === "Home Delivery" && (
-                  <Textarea 
-                    placeholder="Enter full delivery address..."
-                    value={orderData.address}
-                    onChange={e => setOrderData({...orderData, address: e.target.value})}
-                    required
-                  />
+                  <div className="animate-in slide-in-from-top-2">
+                    <Textarea 
+                      placeholder="Enter full delivery address in Mira Road..."
+                      value={orderData.address}
+                      onChange={e => setOrderData({...orderData, address: e.target.value})}
+                      required
+                      className="mb-2"
+                    />
+                    <div className="text-xs text-amber-800 bg-amber-50 p-3 rounded-md border border-amber-100 flex gap-2 items-start mt-2">
+                      <span className="text-base">ℹ️</span> 
+                      <span>Cake total: <strong>₹{selectedCake.basePrice * (orderData.weight === "1 kg" ? 2 : 1)}</strong>. Home delivery charges will be calculated as per your Mira Road address and added to the final total via WhatsApp.</span>
+                    </div>
+                  </div>
                 )}
               </div>
 

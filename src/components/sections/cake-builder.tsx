@@ -161,15 +161,22 @@ export function CustomCakeBuilder() {
 
     const shopPhone = "919819134616";
     const nl = "\n"; // New line
-    const message = `*🎂 NEW CUSTOM CAKE INQUIRY - DELIGHTS*${nl}` +
-      `• *Customer:* ${data.name} (${data.phone})${nl}` +
-      `• *Occasion:* ${data.occasion}${nl}` +
-      `• *Date & Time:* ${data.date} @ ${data.timeSlot}${nl}` +
-      `• *Flavor:* ${data.flavor} (100% Pure Veg & Eggless)${nl}` +
-      `• *Weight & Tier:* ${data.weight}, ${data.tiers}${nl}` +
+    const deliveryString = data.deliveryMode === 'Delivery' 
+      ? 'Home Delivery (Delivery charges extra as per distance)' 
+      : 'Store Pickup (Free)';
+      
+    const addressString = data.deliveryMode === 'Delivery' && data.address 
+      ? data.address 
+      : 'Pickup';
+
+    const message = `🎂 *CUSTOM CAKE INQUIRY - DELIGHTS*${nl}` +
+      `• *Occasion / Date:* ${data.occasion} - ${data.date} @ ${data.timeSlot}${nl}` +
+      `• *Flavor & Weight:* ${data.flavor} - ${data.weight}, ${data.tiers} (100% Eggless)${nl}` +
       `• *Message on Cake:* "${data.cakeText || 'None'}"${nl}` +
-      `• *Delivery:* ${data.deliveryMode}${data.address ? ` to ${data.address}` : ''}${nl}` +
-      `• *Estimated Total:* ₹${estimatedPrice}${nl}` +
+      `• *Estimated Cake Base:* ₹${estimatedPrice}${nl}` +
+      `• *Fulfillment:* ${deliveryString}${nl}` +
+      `• *Address:* ${addressString}${nl}` +
+      `• *Customer:* ${data.name} (${data.phone})${nl}` +
       `• *Reference Photo:* ${uploadedImage ? 'Customer is attaching photo in this chat' : 'None'}${nl}` +
       `• *Special Notes:* ${data.notes || 'None'}`;
 
@@ -412,22 +419,42 @@ export function CustomCakeBuilder() {
                 </div>
                 
                 <div>
-                  <div className="flex gap-4 mb-3">
-                    {["In-Store Pickup", "Delivery"].map(mode => (
-                      <label key={mode} className="flex items-center gap-2 cursor-pointer">
-                        <input type="radio" value={mode} {...register("deliveryMode")} className="accent-primary" />
-                        <span className="text-sm">{mode}</span>
+                    <label className="block text-sm font-medium mb-2 text-foreground">Delivery Preference</label>
+                    <div className="flex flex-col gap-2 mb-3">
+                      <label className={cn(
+                        "text-left p-3 rounded-md border text-sm font-medium transition-colors flex flex-col gap-1 cursor-pointer",
+                        formValues.deliveryMode === "In-Store Pickup" ? "bg-primary/10 border-primary ring-1 ring-primary" : "bg-card hover:bg-muted/50"
+                      )}>
+                        <div className="flex items-center gap-2">
+                          <input type="radio" value="In-Store Pickup" {...register("deliveryMode")} className="accent-primary" />
+                          <span className="font-semibold text-primary">?? Store Pickup (Free)</span>
+                        </div>
+                        <span className="text-xs font-normal text-muted-foreground ml-6">Abhilasha Residency Rd</span>
                       </label>
-                    ))}
-                  </div>
-                  
-                  {formValues.deliveryMode === "Delivery" && (
-                    <div>
-                      <Textarea placeholder="Full Delivery Address" {...register("address")} />
-                      {errors.address && <p className="text-red-500 text-xs mt-1">{errors.address.message}</p>}
+                      
+                      <label className={cn(
+                        "text-left p-3 rounded-md border text-sm font-medium transition-colors flex flex-col gap-1 cursor-pointer",
+                        formValues.deliveryMode === "Delivery" ? "bg-primary/10 border-primary ring-1 ring-primary" : "bg-card hover:bg-muted/50"
+                      )}>
+                        <div className="flex items-center gap-2">
+                          <input type="radio" value="Delivery" {...register("deliveryMode")} className="accent-primary" />
+                          <span className="font-semibold text-primary">?? Home Delivery</span>
+                        </div>
+                        <span className="text-xs font-normal text-muted-foreground ml-6">Delivery charges extra as per distance</span>
+                      </label>
                     </div>
-                  )}
-                </div>
+                    
+                    {formValues.deliveryMode === "Delivery" && (
+                      <div className="animate-in slide-in-from-top-2">
+                        <Textarea placeholder="Full Delivery Address in Mira Road" {...register("address")} className="mb-2" />
+                        {errors.address && <p className="text-red-500 text-xs mb-2">{errors.address.message}</p>}
+                        <div className="text-xs text-amber-800 bg-amber-50 p-3 rounded-md border border-amber-100 flex gap-2 items-start mt-2">
+                          <span className="text-base">??</span> 
+                          <span>Cake total: <strong>?{estimatedPrice}</strong>. Home delivery charges will be calculated as per your Mira Road address and added to the final total via WhatsApp.</span>
+                        </div>
+                      </div>
+                    )}
+                  </div>
               </div>
             </div>
 
@@ -458,3 +485,4 @@ export function CustomCakeBuilder() {
     </section>
   );
 }
+
