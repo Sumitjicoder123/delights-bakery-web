@@ -80,6 +80,20 @@ export const everydayCakes: Cake[] = [
     "image": "/cakes/Chocholate%20Flex%20450.jpeg"
   },
   {
+    "id": "chocholate-truffle",
+    "name": "Chocholate Truffle",
+    "description": "100% Pure Veg & Eggless fresh cake prepared daily.",
+    "basePrice": 500,
+    "weightOptions": [
+      "0.5 kg",
+      "1 kg"
+    ],
+    "dietary": [
+      "100% Eggless"
+    ],
+    "image": "/cakes/Chocholate%20Truffle%20500.jpeg"
+  },
+  {
     "id": "choco-caremel",
     "name": "Choco Caremel",
     "description": "100% Pure Veg & Eggless fresh cake prepared daily.",
@@ -330,6 +344,11 @@ export const customFlavors = [
     "id": "chocholate-flex",
     "label": "Chocholate Flex",
     "basePrice": 450
+  },
+  {
+    "id": "chocholate-truffle",
+    "label": "Chocholate Truffle",
+    "basePrice": 500
   },
   {
     "id": "choco-caremel",
