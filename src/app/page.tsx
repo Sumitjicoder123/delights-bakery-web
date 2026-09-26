@@ -3,6 +3,7 @@ import { Footer } from "@/components/layout/footer";
 import { Hero } from "@/components/sections/hero";
 import { MenuSection } from "@/components/sections/menu";
 import { CustomCakeBuilder } from "@/components/sections/cake-builder";
+import { ReviewsSection } from "@/components/sections/reviews";
 import { FaqSection } from "@/components/sections/faq";
 
 export default function Home() {
@@ -13,6 +14,7 @@ export default function Home() {
         <Hero />
         <MenuSection />
         <CustomCakeBuilder />
+        <ReviewsSection />
         <FaqSection />
       </main>
       <Footer />

@@ -27,20 +27,9 @@ export function FaqSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section id="reviews" className="py-20 bg-background">
+    <section className="py-16 md:py-24 bg-background border-t border-border/50">
       <div className="container mx-auto px-4 md:px-6">
         
-        {/* Social Proof */}
-        <div className="mb-16 flex flex-col items-center text-center">
-          <div className="flex items-center gap-1 mb-3">
-            {[1, 2, 3, 4, 5].map((star) => (
-              <Star key={star} className="w-6 h-6 fill-[#FBBC04] text-[#FBBC04]" />
-            ))}
-          </div>
-          <h3 className="text-2xl font-bold font-serif mb-2">4.9 ★ Excellent</h3>
-          <p className="text-muted-foreground">Based on 150+ local reviews on Google</p>
-        </div>
-
         {/* FAQ Accordion */}
         <div className="max-w-3xl mx-auto">
           <h2 className="text-3xl font-bold font-serif text-center mb-8">Frequently Asked Questions</h2>
