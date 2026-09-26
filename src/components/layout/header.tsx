@@ -6,6 +6,18 @@ import Link from 'next/link';
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
 
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    setIsOpen(false);
+    if (href.startsWith('#')) {
+      e.preventDefault();
+      const targetId = href.substring(1);
+      const elem = document.getElementById(targetId);
+      if (elem) {
+        elem.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
+
   return (
     <>
       <header className="sticky top-0 z-50 w-full bg-[#FFF9F3] border-b border-amber-100 shadow-sm">
@@ -69,32 +81,32 @@ export function Header() {
 
       {/* Mobile Drawer (Only renders when isOpen is true, perfectly opaque background) */}
       {isOpen && (
-        <div className="fixed inset-0 top-16 z-40 bg-[#FFF9F3] flex flex-col items-center justify-start pt-8 px-6 space-y-6 md:hidden">
-          <Link href="#daily-menu" onClick={() => setIsOpen(false)}
+        <div className="fixed inset-0 top-16 z-[999] bg-[#FFF9F3] flex flex-col items-center justify-start pt-8 px-6 space-y-6 md:hidden">
+          <a href="#daily-menu" onClick={(e) => handleNavClick(e, '#daily-menu')}
             className="text-lg font-semibold text-[#4A2E18] py-2 border-b border-amber-200/60 w-full text-center"
           >
             Daily Fresh Cakes
-          </Link>
-          <Link href="#custom-builder" onClick={() => setIsOpen(false)}
+          </a>
+          <a href="#custom-builder" onClick={(e) => handleNavClick(e, '#custom-builder')}
             className="text-lg font-semibold text-[#4A2E18] py-2 border-b border-amber-200/60 w-full text-center"
           >
             Custom Celebration Cakes
-          </Link>
-          <Link href="#reviews" onClick={() => setIsOpen(false)}
+          </a>
+          <a href="#reviews" onClick={(e) => handleNavClick(e, '#reviews')}
             className="text-lg font-semibold text-[#4A2E18] py-2 border-b border-amber-200/60 w-full text-center"
           >
             Google Reviews
-          </Link>
-          <Link href="#contact" onClick={() => setIsOpen(false)}
+          </a>
+          <a href="#contact" onClick={(e) => handleNavClick(e, '#contact')}
             className="text-lg font-semibold text-[#4A2E18] py-2 border-b border-amber-200/60 w-full text-center"
           >
             Contact & Location
-          </Link>
-          <Link href="#custom-builder" onClick={() => setIsOpen(false)}
+          </a>
+          <a href="#custom-builder" onClick={(e) => handleNavClick(e, '#custom-builder')}
             className="w-full max-w-xs py-3 bg-[#4A2E18] text-white font-medium rounded-full text-center shadow-lg mt-4"
           >
             Design Custom Cake
-          </Link>
+          </a>
         </div>
       )}
     </>
