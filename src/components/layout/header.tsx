@@ -44,21 +44,20 @@ export function Header() {
       </div>
 
       {/* Mobile Nav Drawer */}
-      <div className={cn(
-        isMobileMenuOpen ? "flex" : "hidden",
-        "md:hidden fixed inset-0 top-[64px] bg-[#FFF9F3] z-50 flex-col items-center justify-start p-6 shadow-xl"
-      )}>
-        <nav className="flex flex-col items-center gap-6 w-full px-6 mt-8">
-          <Link href="#daily-menu" onClick={() => setIsMobileMenuOpen(false)} className="text-2xl font-serif font-medium hover:text-primary/80 transition-colors">Daily Menu</Link>
-          <Link href="#custom-builder" onClick={() => setIsMobileMenuOpen(false)} className="text-2xl font-serif font-medium hover:text-primary/80 transition-colors">Custom Cakes</Link>
-          <Link href="#reviews" onClick={() => setIsMobileMenuOpen(false)} className="text-2xl font-serif font-medium hover:text-primary/80 transition-colors">Reviews</Link>
-          <Link href="#contact" onClick={() => setIsMobileMenuOpen(false)} className="text-2xl font-serif font-medium hover:text-primary/80 transition-colors">Contact</Link>
-          
-          <Button asChild className="w-full mt-4 h-14 rounded-full text-lg sm:hidden">
-            <Link href="#custom-builder" onClick={() => setIsMobileMenuOpen(false)}>Order Custom Cake</Link>
-          </Button>
-        </nav>
-      </div>
+      {isMobileMenuOpen && (
+        <div className="fixed inset-x-0 top-[65px] bottom-0 bg-[#FFF9F3] z-50 flex flex-col items-center justify-start pt-8 pb-10 px-6 space-y-6 shadow-2xl overflow-y-auto md:hidden">
+          <nav className="flex flex-col items-center w-full">
+            <Link href="#daily-menu" onClick={() => setIsMobileMenuOpen(false)} className="text-lg font-semibold text-[#4A2E18] hover:text-amber-700 py-4 border-b border-amber-100/60 w-full text-center">Daily Menu</Link>
+            <Link href="#custom-builder" onClick={() => setIsMobileMenuOpen(false)} className="text-lg font-semibold text-[#4A2E18] hover:text-amber-700 py-4 border-b border-amber-100/60 w-full text-center">Custom Cakes</Link>
+            <Link href="#reviews" onClick={() => setIsMobileMenuOpen(false)} className="text-lg font-semibold text-[#4A2E18] hover:text-amber-700 py-4 border-b border-amber-100/60 w-full text-center">Reviews</Link>
+            <Link href="#contact" onClick={() => setIsMobileMenuOpen(false)} className="text-lg font-semibold text-[#4A2E18] hover:text-amber-700 py-4 border-b border-amber-100/60 w-full text-center">Contact</Link>
+            
+            <Link href="#custom-builder" onClick={() => setIsMobileMenuOpen(false)} className="w-full max-w-xs py-3 bg-[#4A2E18] text-white font-medium rounded-full text-center shadow-md mt-6">
+              Order Custom Cake
+            </Link>
+          </nav>
+        </div>
+      )}
     </header>
   );
 }
