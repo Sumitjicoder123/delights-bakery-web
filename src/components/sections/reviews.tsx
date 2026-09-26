@@ -86,10 +86,13 @@ export function ReviewsSection() {
         {/* Live Google Reviews Embed Container */}
         <div className="w-full mt-12 flex justify-center">
           <div id="elfsight-google-reviews-placeholder" className="w-full min-h-[160px] rounded-xl border border-amber-100 bg-amber-50/30 p-8 text-center flex flex-col items-center justify-center gap-2">
-            <p className="text-sm text-stone-600 font-medium flex items-center gap-2">
-              <Star className="w-4 h-4 fill-[#D97706] text-[#D97706]" /> 
-              Rated on Google Maps • Mira Road East
-            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-2 text-stone-700 font-medium">
+              <div className="flex items-center text-amber-500 text-lg">
+                ★★★★★
+              </div>
+              <span className="font-bold text-[#4A2E18]">4.9 / 5.0</span>
+              <span className="text-stone-500">• Over 100+ Verified Reviews on Google Maps • Mira Road East</span>
+            </div>
           </div>
         </div>
 
