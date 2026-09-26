@@ -8,7 +8,7 @@ export function Footer() {
         <div>
           <h3 className="font-serif text-2xl font-bold mb-4">Delights</h3>
           <p className="text-primary-foreground/80 text-sm max-w-xs">
-            Best Cakes in Mira Road. Bespoke celebration cakes made with love and the finest ingredients for your special moments.
+            Mira Road's favorite destination for 100% pure vegetarian and eggless cakes. Baked fresh daily with premium ingredients for birthdays, anniversaries, and all your celebrations.
           </p>
           <div className="flex gap-4 mt-6">
             <Link href="#" className="hover:text-secondary transition-colors font-medium">
@@ -24,12 +24,14 @@ export function Footer() {
           <h4 className="font-bold text-lg mb-4 text-secondary">Contact Us</h4>
           <ul className="space-y-3 text-sm text-primary-foreground/80">
             <li className="flex items-start gap-2">
-              <MapPin className="h-5 w-5 shrink-0 text-secondary" />
-              <span>Abhilasha Residency Rd, Siddhi Vinayak Nagar,<br/>Mahajan Wadi, Mira Road East,<br/>Mira Bhayandar, Maharashtra 401107</span>
+              <MapPin className="h-5 w-5 shrink-0 text-secondary mt-1" />
+              <a href="https://maps.google.com/?q=Delights+Abhilasha+Residency+Rd+Mira+Road+East+401107" target="_blank" rel="noopener noreferrer" className="hover:underline transition-all">
+                Abhilasha Residency Rd, Siddhi Vinayak Nagar,<br/>Mahajan Wadi, Mira Road East,<br/>Mira Bhayandar, Maharashtra 401107
+              </a>
             </li>
             <li className="flex items-center gap-2">
               <Phone className="h-5 w-5 shrink-0 text-secondary" />
-              <span>+91 98191 34616</span>
+              <a href="tel:+919819134616" className="hover:underline transition-all">+91 98191 34616</a>
             </li>
           </ul>
         </div>

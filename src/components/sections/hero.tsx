@@ -8,11 +8,14 @@ export function Hero() {
       <section className="relative overflow-hidden bg-muted">
         <div className="container mx-auto px-4 sm:px-6 py-6 md:py-16 lg:py-24 flex flex-col-reverse lg:flex-row items-center gap-6 lg:gap-12">
           <div className="flex-1 space-y-4 sm:space-y-6 z-10 w-full text-center lg:text-left mt-4 lg:mt-0">
+            <span className="bg-emerald-50 text-emerald-800 border border-emerald-200 px-3 py-1 rounded-full text-xs font-semibold inline-block mb-1 sm:mb-3">
+              🌿 100% Pure Veg & Eggless Bakery
+            </span>
             <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-primary leading-tight">
-              Bespoke Celebration Cakes <br className="hidden lg:block"/> Made for Your Special Moments
+              Freshly Baked Eggless Cakes <br className="hidden lg:block"/> for Every Celebration in Mira Road
             </h1>
             <p className="text-sm sm:text-lg text-muted-foreground max-w-[600px] mx-auto lg:mx-0">
-              Delivering within a 10km radius. We require a minimum 48-hour notice for all custom orders to ensure perfection down to the last crumb.
+              From same-day favorites to handcrafted custom designer cakes. Pure veg, freshly baked daily on Abhilasha Residency Road.
             </p>
             <div className="hidden sm:flex flex-col sm:flex-row justify-center lg:justify-start gap-4 pt-4 w-full">
               <Button asChild size="lg" className="rounded-full text-base h-12 w-full sm:w-auto bg-primary text-primary-foreground hover:bg-primary/90">
