@@ -23,7 +23,7 @@ export function Hero() {
           </div>
         </div>
         
-        <div className="flex-1 relative w-[320px] h-[320px] sm:w-[420px] sm:h-[420px] rounded-full overflow-hidden border-4 border-white/80 shadow-2xl z-10 mx-auto">
+        <div className="relative aspect-square flex-shrink-0 w-full max-w-[340px] sm:max-w-[420px] lg:max-w-[460px] mx-auto rounded-full overflow-hidden border-4 border-white/80 shadow-2xl z-10">
           <Image 
             src="/hero-cake.jpg" 
             alt="Beautiful custom chocolate layer cake" 
