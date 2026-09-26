@@ -8,8 +8,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card } from "@/components/ui/card";
-
-import { Trash2, Edit2, LogOut, ArrowLeft, Plus } from "lucide-react";
+import { Trash2, Edit2, LogOut, ArrowLeft, Plus, Download } from "lucide-react";
+import { everydayCakes } from "@/data/cakes";
 
 export default function AdminDashboard() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -88,6 +88,32 @@ export default function AdminDashboard() {
     if (window.confirm("Are you sure you want to delete this cake?")) {
       await supabase.from('cakes').delete().eq('id', id);
       fetchCakes();
+    }
+  };
+
+  const seedDefaultCakes = async () => {
+    try {
+      setIsLoading(true);
+      const payload = everydayCakes.map((cake: any) => ({
+        name: cake.name,
+        price: cake.basePrice || cake.price || 350,
+        basePrice: cake.basePrice || cake.price || 350,
+        image_url: cake.image || cake.imageUrl || '/cakes/WhiteForest%20400.jpeg',
+        image: cake.image || cake.imageUrl || '/cakes/WhiteForest%20400.jpeg',
+        description: cake.description || '100% Pure Veg & Eggless fresh cake prepared daily.',
+        in_stock: true,
+      }));
+
+      const { error } = await supabase.from('cakes').insert(payload);
+      if (error) throw error;
+
+      alert('All menu cakes imported successfully!');
+      fetchCakes();
+    } catch (err: any) {
+      console.error(err);
+      alert('Error seeding cakes: ' + err.message);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -183,8 +209,11 @@ export default function AdminDashboard() {
 
         <div className="grid gap-4">
           {cakes.length === 0 ? (
-            <div className="text-center py-12 bg-white rounded-xl border border-dashed border-stone-300 text-stone-500">
-              No cakes found in database. Add one above!
+            <div className="text-center py-12 bg-white rounded-xl border border-dashed border-stone-300 text-stone-500 flex flex-col items-center justify-center gap-4">
+              <p>No cakes found in database.</p>
+              <Button onClick={seedDefaultCakes} variant="outline" className="text-[#4A2E18] border-[#4A2E18]">
+                <Download className="w-4 h-4 mr-2" /> Auto-Import Default Menu
+              </Button>
             </div>
           ) : (
             cakes.map(cake => (
