@@ -43,12 +43,7 @@ const builderSchema = z.object({
 
 type BuilderData = z.infer<typeof builderSchema>;
 
-const FLAVORS = [
-  { id: "belgian_dark", label: "Belgian Dark Chocolate", basePrice: 1200 },
-  { id: "red_velvet", label: "Red Velvet", basePrice: 1300 },
-  { id: "fresh_mango", label: "Fresh Mango", basePrice: 1500 },
-  { id: "biscoff_crunch", label: "Biscoff Crunch", basePrice: 1400 },
-];
+import { customFlavors as FLAVORS } from "@/data/cakes";
 
 const WEIGHTS = [
   { id: "0.5kg", label: "0.5 kg", multiplier: 0.6, serves: "3-4 people" },
@@ -169,7 +164,7 @@ export function CustomCakeBuilder() {
   };
 
   return (
-    <section id="custom-cakes" className="py-20 bg-muted/30">
+    <section id="custom-builder" className="py-20 bg-muted/30 scroll-mt-16">
       <div className="container mx-auto px-4 md:px-6">
         <div className="text-center mb-12">
           <h2 className="font-serif text-3xl md:text-4xl font-bold text-primary mb-4">Design Your Custom Cake</h2>

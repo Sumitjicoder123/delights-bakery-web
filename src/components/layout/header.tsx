@@ -22,15 +22,15 @@ export function Header() {
         
         {/* Desktop Nav */}
         <nav className="hidden md:flex gap-6 items-center">
-          <Link href="#menu" className="text-sm font-medium hover:text-primary/80 transition-colors">Menu</Link>
-          <Link href="#custom-cakes" className="text-sm font-medium hover:text-primary/80 transition-colors">Custom Cakes</Link>
+          <Link href="#daily-menu" className="text-sm font-medium hover:text-primary/80 transition-colors">Daily Menu</Link>
+          <Link href="#custom-builder" className="text-sm font-medium hover:text-primary/80 transition-colors">Custom Cakes</Link>
           <Link href="#reviews" className="text-sm font-medium hover:text-primary/80 transition-colors">Reviews</Link>
           <Link href="#contact" className="text-sm font-medium hover:text-primary/80 transition-colors">Contact</Link>
         </nav>
         
         <div className="flex items-center gap-2 md:gap-4 z-50">
           <Button asChild className="hidden sm:inline-flex rounded-full h-10 px-6">
-            <Link href="#custom-cakes">Order Cake</Link>
+            <Link href="#custom-builder">Order Cake</Link>
           </Button>
           <Button 
             variant="ghost" 
@@ -49,13 +49,13 @@ export function Header() {
         isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
       )}>
         <nav className="flex flex-col items-center gap-6 w-full px-6">
-          <Link href="#menu" onClick={() => setIsMobileMenuOpen(false)} className="text-2xl font-serif font-medium hover:text-primary/80 transition-colors">Menu</Link>
-          <Link href="#custom-cakes" onClick={() => setIsMobileMenuOpen(false)} className="text-2xl font-serif font-medium hover:text-primary/80 transition-colors">Custom Cakes</Link>
+          <Link href="#daily-menu" onClick={() => setIsMobileMenuOpen(false)} className="text-2xl font-serif font-medium hover:text-primary/80 transition-colors">Daily Menu</Link>
+          <Link href="#custom-builder" onClick={() => setIsMobileMenuOpen(false)} className="text-2xl font-serif font-medium hover:text-primary/80 transition-colors">Custom Cakes</Link>
           <Link href="#reviews" onClick={() => setIsMobileMenuOpen(false)} className="text-2xl font-serif font-medium hover:text-primary/80 transition-colors">Reviews</Link>
           <Link href="#contact" onClick={() => setIsMobileMenuOpen(false)} className="text-2xl font-serif font-medium hover:text-primary/80 transition-colors">Contact</Link>
           
           <Button asChild className="w-full mt-4 h-14 rounded-full text-lg sm:hidden">
-            <Link href="#custom-cakes" onClick={() => setIsMobileMenuOpen(false)}>Order Custom Cake</Link>
+            <Link href="#custom-builder" onClick={() => setIsMobileMenuOpen(false)}>Order Custom Cake</Link>
           </Button>
         </nav>
       </div>

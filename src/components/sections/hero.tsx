@@ -14,18 +14,18 @@ export function Hero() {
             Delivering within a 10km radius. We require a minimum 48-hour notice for all custom orders to ensure perfection down to the last crumb.
           </p>
           <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-4 pt-4 w-full">
-            <Button asChild size="lg" className="rounded-full text-base h-12 w-full sm:w-auto">
-              <Link href="#custom-cakes">Order Custom Cake</Link>
+            <Button asChild size="lg" className="rounded-full text-base h-12 w-full sm:w-auto bg-primary text-primary-foreground hover:bg-primary/90">
+              <Link href="#custom-builder">Design Custom Cake</Link>
             </Button>
-            <Button asChild variant="outline" size="lg" className="rounded-full text-base h-12 w-full sm:w-auto">
-              <Link href="#menu">View Daily Menu</Link>
+            <Button asChild variant="outline" size="lg" className="rounded-full text-base h-12 w-full sm:w-auto border-green-600 text-green-700 hover:bg-green-50 hover:text-green-800">
+              <Link href="#daily-menu">Order Today's Fresh Cakes</Link>
             </Button>
           </div>
         </div>
         
         <div className="flex-1 relative w-full max-w-[320px] sm:max-w-[400px] lg:max-w-[500px] aspect-square rounded-full overflow-hidden border-8 border-background shadow-xl z-10 mx-auto">
           <Image 
-            src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=1089&auto=format&fit=crop" 
+            src="/cakes/dutch-chocolate-450.jpg" 
             alt="Beautiful custom chocolate layer cake" 
             fill
             className="object-cover"
