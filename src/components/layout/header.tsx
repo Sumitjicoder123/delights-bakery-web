@@ -13,7 +13,7 @@ export function Header() {
           
           {/* Logo */}
           <Link className="flex items-center space-x-2" href="/">
-            <span className="text-2xl">🎂</span>
+            <svg className="w-6 h-6 text-[#4A2E18]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2v3" /><path d="M7 6h10a2 2 0 0 1 2 2v2H3V8a2 2 0 0 1 2-2z" /><path d="M3 10h18v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V10z" /><line x1="3" y1="14" x2="21" y2="14" /></svg>
             <div>
               <span className="text-xl font-bold tracking-tight text-[#4A2E18] block leading-none">Delights</span>
               <span className="text-[10px] uppercase tracking-wider text-amber-800 font-medium">Best Cakes in Mira Road</span>
@@ -100,3 +100,4 @@ export function Header() {
     </>
   );
 }
+
