@@ -45,17 +45,42 @@ export function Header() {
 
       {/* Mobile Nav Drawer */}
       {isMobileMenuOpen && (
-        <div className="fixed inset-x-0 top-[65px] bottom-0 bg-[#FFF9F3] z-50 flex flex-col items-center justify-start pt-8 pb-10 px-6 space-y-6 shadow-2xl overflow-y-auto md:hidden">
-          <nav className="flex flex-col items-center w-full">
-            <Link href="#daily-menu" onClick={() => setIsMobileMenuOpen(false)} className="text-lg font-semibold text-[#4A2E18] hover:text-amber-700 py-4 border-b border-amber-100/60 w-full text-center">Daily Menu</Link>
-            <Link href="#custom-builder" onClick={() => setIsMobileMenuOpen(false)} className="text-lg font-semibold text-[#4A2E18] hover:text-amber-700 py-4 border-b border-amber-100/60 w-full text-center">Custom Cakes</Link>
-            <Link href="#reviews" onClick={() => setIsMobileMenuOpen(false)} className="text-lg font-semibold text-[#4A2E18] hover:text-amber-700 py-4 border-b border-amber-100/60 w-full text-center">Reviews</Link>
-            <Link href="#contact" onClick={() => setIsMobileMenuOpen(false)} className="text-lg font-semibold text-[#4A2E18] hover:text-amber-700 py-4 border-b border-amber-100/60 w-full text-center">Contact</Link>
-            
-            <Link href="#custom-builder" onClick={() => setIsMobileMenuOpen(false)} className="w-full max-w-xs py-3 bg-[#4A2E18] text-white font-medium rounded-full text-center shadow-md mt-6">
-              Order Custom Cake
-            </Link>
-          </nav>
+        <div className="fixed inset-0 top-[60px] z-[999] bg-[#FFF9F3] flex flex-col items-center justify-start pt-10 px-6 space-y-6 shadow-2xl md:hidden">
+          <a 
+            href="#daily-menu" 
+            onClick={() => setIsMobileMenuOpen(false)}
+            className="text-lg font-semibold text-[#4A2E18] py-2 border-b border-amber-200/50 w-full text-center"
+          >
+            Daily Fresh Cakes
+          </a>
+          <a 
+            href="#custom-builder" 
+            onClick={() => setIsMobileMenuOpen(false)}
+            className="text-lg font-semibold text-[#4A2E18] py-2 border-b border-amber-200/50 w-full text-center"
+          >
+            Custom Celebration Cakes
+          </a>
+          <a 
+            href="#reviews" 
+            onClick={() => setIsMobileMenuOpen(false)}
+            className="text-lg font-semibold text-[#4A2E18] py-2 border-b border-amber-200/50 w-full text-center"
+          >
+            Reviews
+          </a>
+          <a 
+            href="#contact" 
+            onClick={() => setIsMobileMenuOpen(false)}
+            className="text-lg font-semibold text-[#4A2E18] py-2 border-b border-amber-200/50 w-full text-center"
+          >
+            Contact & Hours
+          </a>
+          <a 
+            href="#custom-builder"
+            onClick={() => setIsMobileMenuOpen(false)}
+            className="w-full max-w-xs py-3 bg-[#4A2E18] text-white font-medium rounded-full text-center shadow-lg mt-4"
+          >
+            Design Custom Cake
+          </a>
         </div>
       )}
     </header>
