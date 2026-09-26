@@ -68,35 +68,35 @@ export function MenuSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        <div className="grid grid-cols-2 gap-3 sm:gap-6 lg:grid-cols-3">
           {everydayCakes.map((cake) => (
             <Card key={cake.id} className="overflow-hidden border-border/50 hover:border-primary/30 transition-colors flex flex-col">
-              <div className="relative w-full aspect-[4/3] overflow-hidden rounded-t-xl bg-amber-50/50">
+              <div className="relative w-full aspect-square overflow-hidden rounded-t-xl bg-amber-50/50">
                 <Image 
                   src={cake.image} 
                   alt={cake.name} 
                   fill
                   className="w-full h-full object-cover object-center transition-transform duration-300 hover:scale-105"
                 />
-                <div className="absolute top-3 right-3 z-10 bg-white/90 backdrop-blur-sm text-green-700 text-xs font-bold px-3 py-1 rounded-full shadow-sm">
+                <div className="absolute top-2 right-2 sm:top-3 sm:right-3 z-10 bg-white/95 backdrop-blur-sm text-green-700 text-[10px] sm:text-xs font-bold px-2 py-1 sm:px-3 rounded-full shadow-sm">
                   {cake.dietary[0]}
                 </div>
               </div>
-              <CardHeader className="flex-1 pb-2">
-                <div className="flex justify-between items-start gap-4">
-                  <CardTitle className="text-xl font-serif">{cake.name}</CardTitle>
-                  <span className="font-bold text-primary">₹{cake.basePrice}</span>
+              <div className="flex flex-col flex-1 p-2 sm:p-5">
+                <div className="flex flex-col sm:flex-row justify-between sm:items-start gap-1 sm:gap-2 mb-1 sm:mb-2">
+                  <h3 className="text-sm sm:text-lg font-semibold font-serif truncate" title={cake.name}>{cake.name}</h3>
+                  <span className="text-sm sm:text-lg font-bold text-amber-900">₹{cake.basePrice}</span>
                 </div>
-                <CardDescription className="text-sm text-muted-foreground mt-2 line-clamp-2">{cake.description}</CardDescription>
-              </CardHeader>
-              <CardFooter className="pt-4 pb-6 px-6 flex flex-col gap-4">
-                <Button 
-                  onClick={() => openOrderModal(cake)}
-                  className="w-full h-12 text-base rounded-lg bg-green-600 hover:bg-green-700 text-white"
-                >
-                  Quick Order on WhatsApp
-                </Button>
-              </CardFooter>
+                <p className="hidden sm:block text-xs sm:text-sm text-muted-foreground line-clamp-2 flex-1 mb-4">{cake.description}</p>
+                <div className="mt-auto pt-2 sm:pt-0">
+                  <Button 
+                    onClick={() => openOrderModal(cake)}
+                    className="w-full h-8 sm:h-12 text-xs sm:text-base rounded-md sm:rounded-lg bg-green-600 hover:bg-green-700 text-white font-medium"
+                  >
+                    Quick Order
+                  </Button>
+                </div>
+              </div>
             </Card>
           ))}
         </div>

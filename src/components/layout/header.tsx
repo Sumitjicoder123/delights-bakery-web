@@ -29,7 +29,7 @@ export function Header() {
         </nav>
         
         <div className="flex items-center gap-2 md:gap-4 z-50">
-          <Button asChild className="hidden sm:inline-flex rounded-full h-10 px-6">
+          <Button asChild className="rounded-full h-8 px-4 text-xs sm:text-sm sm:h-10 sm:px-6">
             <Link href="#custom-builder">Order Cake</Link>
           </Button>
           <Button 
@@ -45,8 +45,8 @@ export function Header() {
 
       {/* Mobile Nav Drawer */}
       <div className={cn(
-        "fixed inset-0 top-16 z-40 bg-background flex flex-col items-center justify-center gap-8 md:hidden transition-transform duration-300 ease-in-out",
-        isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
+        "fixed inset-x-0 bottom-0 top-16 z-40 bg-background flex flex-col items-center justify-center gap-8 md:hidden transition-all duration-300 ease-in-out",
+        isMobileMenuOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-full pointer-events-none hidden"
       )}>
         <nav className="flex flex-col items-center gap-6 w-full px-6">
           <Link href="#daily-menu" onClick={() => setIsMobileMenuOpen(false)} className="text-2xl font-serif font-medium hover:text-primary/80 transition-colors">Daily Menu</Link>
