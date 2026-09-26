@@ -20,7 +20,6 @@ const builderSchema = z.object({
   timeSlot: z.string().min(1, "Please select a time slot"),
   // Step 2
   flavor: z.string().min(1, "Please select a flavor"),
-  dietary: z.enum(["Regular", "Eggless", "Vegan", "Gluten-Free"]),
   weight: z.string().min(1, "Please select a weight"),
   tiers: z.enum(["Single Tier", "2-Tier"]),
   // Step 3
@@ -96,7 +95,7 @@ export function CustomCakeBuilder() {
   const { register, handleSubmit, watch, trigger, formState: { errors } } = useForm<BuilderData>({
     resolver: zodResolver(builderSchema),
     defaultValues: {
-      dietary: "Regular",
+      
       tiers: "Single Tier",
       deliveryMode: "In-Store Pickup"
     },
@@ -118,7 +117,7 @@ export function CustomCakeBuilder() {
     if (formValues.tiers === "2-Tier") {
       price += 800; // Tier structure fee
     }
-    if (formValues.dietary !== "Regular") {
+    if (false) {
       price += 150; // Special dietary fee
     }
     if (formValues.deliveryMode === "Delivery") {
@@ -134,7 +133,7 @@ export function CustomCakeBuilder() {
   const nextStep = async () => {
     let fieldsToValidate: any[] = [];
     if (currentStep === 1) fieldsToValidate = ["occasion", "date", "timeSlot"];
-    if (currentStep === 2) fieldsToValidate = ["flavor", "weight", "tiers", "dietary"];
+    if (currentStep === 2) fieldsToValidate = ["flavor", "weight", "tiers"];
     if (currentStep === 3) fieldsToValidate = ["cakeText", "notes"];
 
     const isStepValid = await trigger(fieldsToValidate);
@@ -145,19 +144,33 @@ export function CustomCakeBuilder() {
 
   const prevStep = () => setCurrentStep(prev => Math.max(prev - 1, 1));
 
-  const onSubmit = (data: BuilderData) => {
+  const onSubmit = async (data: BuilderData) => {
+    if (uploadedImage) {
+      try {
+        await navigator.clipboard.write([
+          new ClipboardItem({
+            [uploadedImage.type]: uploadedImage
+          })
+        ]);
+        alert("Opening WhatsApp!\n\nYour cake design image has been copied to your clipboard. Please paste or attach it in the WhatsApp chat.");
+      } catch (err) {
+        console.error("Failed to copy image to clipboard", err);
+        alert("Opening WhatsApp!\n\nPlease remember to attach your cake reference image in the WhatsApp chat.");
+      }
+    }
+
     const shopPhone = "919819134616";
     const nl = "\n"; // New line
     const message = `*🎂 NEW CUSTOM CAKE INQUIRY - DELIGHTS*${nl}` +
       `• *Customer:* ${data.name} (${data.phone})${nl}` +
       `• *Occasion:* ${data.occasion}${nl}` +
       `• *Date & Time:* ${data.date} @ ${data.timeSlot}${nl}` +
-      `• *Flavor:* ${data.flavor} (${data.dietary})${nl}` +
+      `• *Flavor:* ${data.flavor} (100% Pure Veg & Eggless)${nl}` +
       `• *Weight & Tier:* ${data.weight}, ${data.tiers}${nl}` +
       `• *Message on Cake:* "${data.cakeText || 'None'}"${nl}` +
       `• *Delivery:* ${data.deliveryMode}${data.address ? ` to ${data.address}` : ''}${nl}` +
       `• *Estimated Total:* ₹${estimatedPrice}${nl}` +
-      `• *Reference Photo:* ${uploadedImage ? 'Customer has photo ready to attach in chat' : 'None'}${nl}` +
+      `• *Reference Photo:* ${uploadedImage ? 'Customer is attaching photo in this chat' : 'None'}${nl}` +
       `• *Special Notes:* ${data.notes || 'None'}`;
 
     window.open(`https://wa.me/${shopPhone}?text=${encodeURIComponent(message)}`, "_blank");
@@ -264,21 +277,14 @@ export function CustomCakeBuilder() {
             <div className={cn("space-y-6 animate-in fade-in slide-in-from-right-4 duration-500", currentStep !== 2 && "hidden")}>
               <div>
                 <label className="block text-sm font-medium mb-3 text-foreground">Sponge & Flavor</label>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
                   {FLAVORS.map(flavor => (
                     <label key={flavor.id} className={cn(
-                      "flex items-center p-4 border rounded-lg cursor-pointer hover:bg-muted/50 transition-colors",
-                      formValues.flavor === flavor.label ? "border-primary bg-primary/5" : "border-border"
+                      "flex flex-col justify-center items-center text-center p-3 sm:p-4 border-2 rounded-xl cursor-pointer hover:bg-primary/5 transition-all",
+                      formValues.flavor === flavor.label ? "border-primary bg-primary/10 shadow-sm" : "border-border/50"
                     )}>
                       <input type="radio" value={flavor.label} {...register("flavor")} className="hidden" />
-                      <div className="flex-1">
-                        <span className="block font-medium">{flavor.label}</span>
-                      </div>
-                      <div className={cn("w-4 h-4 rounded-full border flex items-center justify-center", 
-                        formValues.flavor === flavor.label ? "border-primary" : "border-muted-foreground"
-                      )}>
-                        {formValues.flavor === flavor.label && <div className="w-2 h-2 bg-primary rounded-full" />}
-                      </div>
+                      <span className="text-sm sm:text-base font-semibold text-foreground leading-tight">{flavor.label}</span>
                     </label>
                   ))}
                 </div>
@@ -313,14 +319,9 @@ export function CustomCakeBuilder() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium mb-3 text-foreground">Dietary Preferences</label>
-                <div className="flex flex-wrap gap-4">
-                  {["Regular", "Eggless", "Vegan", "Gluten-Free"].map(diet => (
-                    <label key={diet} className="flex items-center gap-2 cursor-pointer bg-muted/30 px-3 py-2 rounded-md border">
-                      <input type="radio" value={diet} {...register("dietary")} className="accent-primary" />
-                      <span className="text-sm font-medium">{diet}</span>
-                    </label>
-                  ))}
+                <div className="inline-flex items-center gap-2 bg-green-50 text-green-700 border border-green-200 px-4 py-3 rounded-xl shadow-sm w-full sm:w-auto justify-center">
+                  <span className="text-lg">🌿</span>
+                  <span className="font-bold text-sm sm:text-base">100% Pure Veg / Eggless Bakery</span>
                 </div>
               </div>
             </div>
@@ -389,7 +390,7 @@ export function CustomCakeBuilder() {
                   <div className="flex justify-between"><span className="text-muted-foreground">Occasion:</span> <span className="font-medium">{formValues.occasion}</span></div>
                   <div className="flex justify-between"><span className="text-muted-foreground">Date & Time:</span> <span className="font-medium">{formValues.date} @ {formValues.timeSlot}</span></div>
                   <div className="flex justify-between"><span className="text-muted-foreground">Cake Spec:</span> <span className="font-medium">{formValues.weight} {formValues.flavor}</span></div>
-                  <div className="flex justify-between"><span className="text-muted-foreground">Details:</span> <span className="font-medium">{formValues.dietary}, {formValues.tiers}</span></div>
+                  <div className="flex justify-between"><span className="text-muted-foreground">Details:</span> <span className="font-medium">{formValues.tiers}</span></div>
                   <div className="pt-2 mt-2 border-t border-primary/10 flex justify-between items-center">
                     <span className="font-bold text-base">Estimated Total:</span> 
                     <span className="font-bold text-xl text-primary">₹{estimatedPrice}</span>
