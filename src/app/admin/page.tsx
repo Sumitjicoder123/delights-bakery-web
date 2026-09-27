@@ -1,5 +1,5 @@
 /* eslint-disable */
-"use client";
+﻿"use client";
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
@@ -168,7 +168,7 @@ export default function AdminDashboard() {
   };
 
   const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL || "https://dummy.supabase.co", process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "dummy");
+    const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://dummy.supabase.co', process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'dummy');
     const file = e.target.files?.[0];
     if (!file) return;
 
@@ -238,7 +238,7 @@ export default function AdminDashboard() {
       <div className="min-h-screen bg-[#FFF9F3] flex items-center justify-center p-4">
         <Card className="w-full max-w-sm p-8 shadow-xl border-[#4A2E18]/10 bg-white">
           <div className="text-center mb-6">
-            <span className="text-4xl mb-2 block">ðŸŽ‚</span>
+            <span className="text-4xl mb-2 block">🎂</span>
             <h1 className="text-2xl font-serif font-bold text-[#4A2E18]">Delights Admin</h1>
             <p className="text-sm text-stone-500">Enter PIN to access dashboard</p>
           </div>
@@ -256,7 +256,7 @@ export default function AdminDashboard() {
               Login
             </Button>
             <Link href="/" className="block text-center text-sm text-[#4A2E18] hover:underline mt-4">
-              â† Back to Website
+              ← Back to Website
             </Link>
           </form>
         </Card>
@@ -329,7 +329,7 @@ export default function AdminDashboard() {
                   <div className="flex-1 min-w-0">
                     <h3 className="font-bold text-stone-800 truncate">{cake.name}</h3>
                     <div className="flex items-center gap-2 mt-1">
-                      <span className="text-sm font-semibold text-stone-600">â‚¹</span>
+                      <span className="text-sm font-semibold text-stone-600">₹</span>
                       <Input 
                         type="number"
                         defaultValue={cake.price || cake.basePrice}
@@ -347,7 +347,7 @@ export default function AdminDashboard() {
                   <div className="flex flex-col items-end gap-3 shrink-0">
                     <div className="flex items-center gap-2">
                       <span className="text-xs font-medium text-stone-500">
-                        {cake.in_stock === false ? 'ðŸ”´ Out' : 'ðŸŸ¢ In Stock'}
+                        {cake.in_stock === false ? '🔴 Out' : '🟢 In Stock'}
                       </span>
                       <input 
                         type="checkbox" 
@@ -440,7 +440,7 @@ export default function AdminDashboard() {
                 <Input required value={newCake.name} onChange={e => setNewCake({...newCake, name: e.target.value})} placeholder="e.g. Pineapple Delight" />
               </div>
               <div>
-                <label className="block text-sm font-medium mb-1">Base Price (0.5kg) in â‚¹</label>
+                <label className="block text-sm font-medium mb-1">Base Price (0.5kg) in ₹</label>
                 <Input required type="number" value={newCake.price} onChange={e => setNewCake({...newCake, price: e.target.value})} placeholder="400" />
               </div>
               
@@ -518,7 +518,5 @@ export default function AdminDashboard() {
     </div>
   );
 }
-
-
 
 
