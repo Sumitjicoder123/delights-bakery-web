@@ -44,10 +44,10 @@ type BuilderData = z.infer<typeof builderSchema>;
 import { customFlavors as FLAVORS } from "@/data/cakes";
 
 const WEIGHTS = [
-  { id: "0.5kg", label: "0.5 kg", multiplier: 0.6, serves: "3-4 people" },
-  { id: "1kg", label: "1 kg", multiplier: 1, serves: "6-8 people" },
-  { id: "1.5kg", label: "1.5 kg", multiplier: 1.5, serves: "10-12 people" },
-  { id: "2kg", label: "2 kg", multiplier: 1.9, serves: "15-20 people" },
+  { id: "0.5kg", label: "0.5 kg", weightInKg: 0.5, serves: "3-4 people" },
+  { id: "1kg", label: "1 kg", weightInKg: 1, serves: "6-8 people" },
+  { id: "1.5kg", label: "1.5 kg", weightInKg: 1.5, serves: "10-12 people" },
+  { id: "2kg", label: "2 kg", weightInKg: 2, serves: "15-20 people" },
 ];
 
 const STEPS = [
@@ -110,7 +110,9 @@ export function CustomCakeBuilder() {
     const selectedWeight = WEIGHTS.find(w => w.label === formValues.weight);
     
     if (selectedFlavor && selectedWeight) {
-      price = selectedFlavor.basePrice * selectedWeight.multiplier;
+      // Rate per kg = basePrice * 2 (since basePrice is for 0.5kg)
+      const pricePerKg = selectedFlavor.basePrice * 2;
+      price = pricePerKg * selectedWeight.weightInKg;
     }
     
     if (formValues.tiers === "2-Tier") {
