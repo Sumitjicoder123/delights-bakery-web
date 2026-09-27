@@ -31,8 +31,8 @@ export default function AdminDashboard() {
   const [currentPin, setCurrentPin] = useState("");
 
   useEffect(() => {
-    const auth = sessionStorage.getItem("delights_admin_auth");
-    const savedPin = sessionStorage.getItem("delights_admin_pin") || "";
+    const auth = localStorage.getItem("delights_admin_auth");
+    const savedPin = localStorage.getItem("delights_admin_pin") || "";
     if (auth === "true" && savedPin) {
       setCurrentPin(savedPin);
       setIsAuthenticated(true);
@@ -43,7 +43,7 @@ export default function AdminDashboard() {
   }, []);
 
   const getAuthHeaders = () => {
-    const activePin = currentPin || sessionStorage.getItem("delights_admin_pin") || '1234';
+    const activePin = currentPin || localStorage.getItem("delights_admin_pin") || '1234';
     return {
       'Content-Type': 'application/json',
       'x-admin-pin': activePin,
@@ -54,8 +54,8 @@ export default function AdminDashboard() {
     e.preventDefault();
     const correctPin = process.env.NEXT_PUBLIC_ADMIN_PIN || '1234';
     if (pin === correctPin) {
-      sessionStorage.setItem("delights_admin_auth", "true");
-      sessionStorage.setItem("delights_admin_pin", pin);
+      localStorage.setItem("delights_admin_auth", "true");
+      localStorage.setItem("delights_admin_pin", pin);
       setCurrentPin(pin);
       setIsAuthenticated(true);
       fetchCakes();
@@ -65,8 +65,8 @@ export default function AdminDashboard() {
   };
 
   const handleLogout = () => {
-    sessionStorage.removeItem("delights_admin_auth");
-    sessionStorage.removeItem("delights_admin_pin");
+    localStorage.removeItem("delights_admin_auth");
+    localStorage.removeItem("delights_admin_pin");
     setIsAuthenticated(false);
     setCurrentPin("");
     setPin("");
