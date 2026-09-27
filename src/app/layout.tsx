@@ -10,8 +10,8 @@ export const metadata: Metadata = {
   description: "Best Place in Mira Road for Cakes. 100% Pure Veg & Eggless Fresh Cakes. Order custom celebration cakes, birthday cakes, and daily fresh pastries in Mira Road East.",
   keywords: "Best Place in Mira Road for Cakes, cakes near me, best cakes in mira road, cake shop mira road east, eggless cake shop near me, custom birthday cakes mira road, pure veg bakery mira road",
   icons: {
-    icon: "/icon.jpg",
-    apple: "/icon.jpg",
+    icon: "/icon.png",
+    apple: "/icon.png",
   }
 };
 
