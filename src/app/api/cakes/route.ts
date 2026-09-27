@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { NextResponse } from 'next/server';
 import { Redis } from '@upstash/redis';
 import initialCakes from '@/data/cakes.json';

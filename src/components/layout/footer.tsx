@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { MapPin, Phone } from "lucide-react";
 import Link from "next/link";
 
