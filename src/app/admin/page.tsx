@@ -477,7 +477,7 @@ export default function AdminDashboard() {
                       </>
                     ) : (
                       <>
-                        📁 Choose from Gallery / Camera
+                        Upload from Gallery / Camera
                         <input
                           type="file"
                           accept="image/*"
