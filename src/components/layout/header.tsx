@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { Lock } from 'lucide-react';
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -137,6 +138,18 @@ export function Header() {
           >
             Design Custom Cake
           </a>
+
+          <div className="w-full mt-auto pt-6 pb-8">
+            <div className="w-full border-t border-neutral-200 mb-2"></div>
+            <Link 
+              href="/admin" 
+              onClick={() => setIsOpen(false)}
+              className="text-xs text-neutral-500 hover:text-neutral-800 py-3 flex items-center justify-center gap-2 transition-colors"
+            >
+              <Lock className="w-4 h-4" />
+              Staff Portal
+            </Link>
+          </div>
         </div>
       )}
     </>
