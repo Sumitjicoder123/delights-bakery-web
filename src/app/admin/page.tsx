@@ -224,13 +224,15 @@ export default function AdminDashboard() {
     reader.readAsDataURL(file);
   };
 
-  const handleAddCake = async (e: React.FormEvent) => {
+    const handleAddCake = async (e: React.FormEvent) => {
     e.preventDefault();
     const priceNum = parseInt(newCake.price);
     
+    console.log("Submitting cake with image payload size:", newCake.image_url.length);
+
     try {
-      const res = await fetch('/api/cakes', {
-        method: 'POST',
+      const res = await fetch("/api/cakes", {
+        method: "POST",
         headers: getAuthHeaders(),
         body: JSON.stringify({ 
           name: newCake.name, 
@@ -242,6 +244,12 @@ export default function AdminDashboard() {
       });
         
       if (res.ok) {
+        const data = await res.json();
+        if (data.cake) {
+          setCakes((prev: any) => [data.cake, ...prev]);
+        } else {
+          fetchCakes();
+        }
         setIsAddModalOpen(false);
         setNewCake({
           name: "",
@@ -249,7 +257,6 @@ export default function AdminDashboard() {
           price: "",
           image_url: "/cakes/WhiteForest%20400.jpeg"
         });
-        fetchCakes();
       } else {
         const errorData = await res.json();
         alert("Error adding cake: " + errorData.error);

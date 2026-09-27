@@ -73,16 +73,12 @@ function sanitizeString(str: any, maxLength = 150): string {
 }
 
 function sanitizeImageUrl(url: any): string {
-  if (typeof url !== 'string') return '/cakes/WhiteForest%20400.jpeg';
+  if (typeof url !== "string") return "/cakes/WhiteForest%20400.jpeg";
   const trimmed = url.trim();
-  // Prevent path traversal
-  if (trimmed.includes('..')) {
-    return '/cakes/WhiteForest%20400.jpeg';
-  }
-  if (trimmed.startsWith('/') || trimmed.startsWith('http://') || trimmed.startsWith('https://')) {
-    return trimmed.slice(0, 1000);
-  }
-  return '/cakes/WhiteForest%20400.jpeg';
+  if (trimmed.includes("..")) return "/cakes/WhiteForest%20400.jpeg";
+  if (trimmed.startsWith("data:image/")) return trimmed;
+  if (trimmed.startsWith("/") || trimmed.startsWith("http://") || trimmed.startsWith("https://")) return trimmed.slice(0, 1000);
+  return "/cakes/WhiteForest%20400.jpeg";
 }
 
 function validatePrice(price: any): number | null {
