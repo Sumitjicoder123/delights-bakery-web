@@ -167,33 +167,61 @@ export default function AdminDashboard() {
     }
   };
 
-  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://dummy.supabase.co', process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'dummy');
+    const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
 
     setIsUploading(true);
-    try {
-      const fileExt = file.name.split('.').pop();
-      const fileName = `${Date.now()}-${Math.random().toString(36).substring(2, 9)}.${fileExt}`;
-      const filePath = `cakes/${fileName}`;
+    const reader = new FileReader();
+    
+    reader.onload = (event) => {
+      const img = new window.Image();
+      img.onload = () => {
+        const canvas = document.createElement('canvas');
+        let width = img.width;
+        let height = img.height;
+        const MAX_SIZE = 600;
 
-      const { error: uploadError } = await supabase.storage
-        .from('cake-images')
-        .upload(filePath, file, { cacheControl: '3600', upsert: false });
+        if (width > height) {
+          if (width > MAX_SIZE) {
+            height *= MAX_SIZE / width;
+            width = MAX_SIZE;
+          }
+        } else {
+          if (height > MAX_SIZE) {
+            width *= MAX_SIZE / height;
+            height = MAX_SIZE;
+          }
+        }
 
-      if (uploadError) throw uploadError;
+        canvas.width = width;
+        canvas.height = height;
 
-      const { data: { publicUrl } } = supabase.storage
-        .from('cake-images')
-        .getPublicUrl(filePath);
-
-      setNewCake({ ...newCake, image_url: publicUrl });
-    } catch (error: any) {
-      alert('Error uploading image: ' + error.message);
-    } finally {
+        const ctx = canvas.getContext('2d');
+        if (ctx) {
+          ctx.drawImage(img, 0, 0, width, height);
+          const base64String = canvas.toDataURL('image/jpeg', 0.7);
+          setNewCake({ ...newCake, image_url: base64String });
+        } else {
+          alert('Error compressing image');
+        }
+        setIsUploading(false);
+      };
+      
+      img.onerror = () => {
+        alert('Error loading image');
+        setIsUploading(false);
+      };
+      
+      img.src = event.target?.result as string;
+    };
+    
+    reader.onerror = () => {
+      alert('Error reading file');
       setIsUploading(false);
-    }
+    };
+    
+    reader.readAsDataURL(file);
   };
 
   const handleAddCake = async (e: React.FormEvent) => {
