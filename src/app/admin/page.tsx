@@ -121,18 +121,24 @@ export default function AdminDashboard() {
     }
   };
 
-  const deleteCake = async (id: string) => {
-    if (window.confirm("Are you sure you want to delete this cake?")) {
-      const res = await fetch(`/api/cakes?id=${encodeURIComponent(id)}`, {
+  const deleteCake = async (cakeId: string) => {
+    if (!window.confirm("Are you sure you want to delete this cake?")) return;
+
+    try {
+      const res = await fetch(`/api/cakes?id=${encodeURIComponent(cakeId)}`, {
         method: 'DELETE',
         headers: getAuthHeaders()
       });
-      if (!res.ok) {
-        const err = await res.json();
-        alert("Error deleting cake: " + (err.error || 'Unauthorized'));
-        return;
+      const data = await res.json();
+      if (!res.ok || !data.success) {
+        throw new Error(data.error || 'Failed to delete');
       }
-      fetchCakes();
+
+      // Update state immediately
+      setCakes(prev => prev.filter(c => String(c.id) !== String(cakeId)));
+    } catch (err: any) {
+      alert(`Error deleting cake: ${err.message}`);
+      fetchCakes(); // Restore state just in case
     }
   };
 

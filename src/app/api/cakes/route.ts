@@ -1,7 +1,25 @@
 import { NextResponse } from 'next/server';
-import { kv } from '@vercel/kv';
-
+import { Redis } from '@upstash/redis';
 import initialCakes from '@/data/cakes.json';
+
+const redisUrl =
+  process.env.STORAGE_KV_REST_API_URL ||
+  process.env.KV_REST_API_URL ||
+  process.env.UPSTASH_REDIS_REST_URL;
+
+const redisToken =
+  process.env.STORAGE_KV_REST_API_TOKEN ||
+  process.env.KV_REST_API_TOKEN ||
+  process.env.UPSTASH_REDIS_REST_TOKEN;
+
+if (!redisUrl || !redisToken) {
+  console.error('Redis credentials missing! Check environment variables.');
+}
+
+const kv = new Redis({
+  url: redisUrl || '',
+  token: redisToken || '',
+});
 
 const CACHE_KEY = 'bakery_cakes_menu';
 
@@ -227,20 +245,32 @@ export async function DELETE(request: Request) {
   }
 
   try {
-    const { searchParams } = new URL(request.url);
-    const id = sanitizeString(searchParams.get('id'), 60);
+    const url = new URL(request.url);
+    let targetId = url.searchParams.get('id');
 
-    if (!id) {
-      return NextResponse.json({ error: "Cake ID is required" }, { status: 400 });
+    if (!targetId) {
+      try {
+        const body = await request.json();
+        targetId = body?.id;
+      } catch (_) {}
     }
 
-    const cakes = await readCakes();
-    const filtered = cakes.filter((c: any) => c.id !== id);
+    if (!targetId) {
+      return NextResponse.json({ success: false, error: 'Cake ID is required' }, { status: 400 });
+    }
 
-    await writeCakes(filtered);
-    return NextResponse.json({ success: true });
-  } catch {
-    return NextResponse.json({ error: "An error occurred while deleting cake." }, { status: 500 });
+    let cakes: any = await kv.get(CACHE_KEY);
+    if (!cakes || !Array.isArray(cakes)) {
+      cakes = initialCakes;
+    }
+
+    const updatedCakes = cakes.filter((cake: any) => String(cake.id) !== String(targetId));
+    await kv.set(CACHE_KEY, updatedCakes);
+
+    return NextResponse.json({ success: true, data: updatedCakes, message: 'Deleted successfully' });
+  } catch (err: any) {
+    console.error('Delete error:', err);
+    return NextResponse.json({ success: false, error: err.message || 'Failed to delete' }, { status: 500 });
   }
 }
 
