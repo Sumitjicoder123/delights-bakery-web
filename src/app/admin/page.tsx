@@ -8,6 +8,12 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card } from "@/components/ui/card";
 import { Trash2, Edit2, LogOut, ArrowLeft, Plus, Download, Image as ImageIcon, Check, ExternalLink } from "lucide-react";
+import { createClient } from "@supabase/supabase-js";
+
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL || '',
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ''
+);
 
 export default function AdminDashboard() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -15,6 +21,7 @@ export default function AdminDashboard() {
   const [cakes, setCakes] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+  const [isUploading, setIsUploading] = useState(false);
   const [editingCakeImage, setEditingCakeImage] = useState<{ id: string; name: string; image: string } | null>(null);
   const [newCake, setNewCake] = useState({
     name: "",
@@ -159,6 +166,34 @@ export default function AdminDashboard() {
       alert('Error seeding cakes: ' + err.message);
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setIsUploading(true);
+    try {
+      const fileExt = file.name.split('.').pop();
+      const fileName = `${Date.now()}-${Math.random().toString(36).substring(2, 9)}.${fileExt}`;
+      const filePath = `cakes/${fileName}`;
+
+      const { error: uploadError } = await supabase.storage
+        .from('cake-images')
+        .upload(filePath, file, { cacheControl: '3600', upsert: false });
+
+      if (uploadError) throw uploadError;
+
+      const { data: { publicUrl } } = supabase.storage
+        .from('cake-images')
+        .getPublicUrl(filePath);
+
+      setNewCake({ ...newCake, image_url: publicUrl });
+    } catch (error: any) {
+      alert('Error uploading image: ' + error.message);
+    } finally {
+      setIsUploading(false);
     }
   };
 
@@ -412,10 +447,14 @@ export default function AdminDashboard() {
               
               {/* Image Input with Live Preview */}
               <div>
-                <label className="block text-sm font-medium mb-1">Image URL (Web Search Link or Local Path)</label>
+                <label className="block text-sm font-medium mb-1">Cake Photo (Upload from Gallery)</label>
                 <div className="flex gap-3 items-center">
                   <div className="relative w-16 h-16 rounded-md overflow-hidden bg-stone-100 border shrink-0">
-                    {newCake.image_url ? (
+                    {isUploading ? (
+                      <div className="w-full h-full flex flex-col items-center justify-center bg-stone-50">
+                        <div className="w-4 h-4 border-2 border-[#4A2E18] border-t-transparent rounded-full animate-spin"></div>
+                      </div>
+                    ) : newCake.image_url ? (
                       <Image 
                         src={newCake.image_url} 
                         alt="Preview" 
@@ -431,23 +470,23 @@ export default function AdminDashboard() {
                   </div>
                   <div className="flex-1">
                     <Input 
-                      required 
-                      value={newCake.image_url} 
-                      onChange={e => setNewCake({...newCake, image_url: e.target.value})}
-                      placeholder="https://... or /cakes/..."
+                      type="file"
+                      accept="image/*"
+                      onChange={handleFileUpload}
+                      disabled={isUploading}
+                      className="text-sm cursor-pointer file:text-sm file:font-semibold file:text-[#4A2E18] file:bg-amber-50 file:border-0 file:mr-4 file:py-1 file:px-3 file:rounded-full hover:file:bg-amber-100 transition-all"
                     />
                   </div>
                 </div>
-                <p className="text-xs text-stone-500 mt-1.5">
-                  Compatible with all web images (copy image address from Google / web search) or local paths like <code>/cakes/WhiteForest%20400.jpeg</code>.
-                </p>
+                {isUploading && <p className="text-xs text-amber-600 mt-1.5 font-medium animate-pulse">Uploading photo...</p>}
+                {!isUploading && newCake.image_url && <p className="text-xs text-green-600 mt-1.5 font-medium flex items-center gap-1"><Check className="w-3 h-3"/> Upload complete!</p>}
               </div>
 
               <div>
                 <label className="block text-sm font-medium mb-1">Description</label>
                 <Textarea required value={newCake.description} onChange={e => setNewCake({...newCake, description: e.target.value})} />
               </div>
-              <Button type="submit" className="w-full bg-[#4A2E18] text-white">Save Cake</Button>
+              <Button disabled={isUploading} type="submit" className="w-full bg-[#4A2E18] text-white">Save Cake</Button>
             </form>
           </div>
         </div>
