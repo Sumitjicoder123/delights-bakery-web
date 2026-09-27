@@ -27,7 +27,6 @@ const builderSchema = z.object({
   notes: z.string().optional(),
   // Step 4
   name: z.string().min(2, "Name must be at least 2 characters"),
-  phone: z.string().min(10, "Please enter a valid 10-digit number"),
   deliveryMode: z.enum(["In-Store Pickup", "Delivery"]),
   address: z.string().optional(),
 }).superRefine((data, ctx) => {
@@ -176,7 +175,7 @@ export function CustomCakeBuilder() {
       `• *Estimated Cake Base:* ₹${estimatedPrice}${nl}` +
       `• *Fulfillment:* ${deliveryString}${nl}` +
       `• *Address:* ${addressString}${nl}` +
-      `• *Customer:* ${data.name} (${data.phone})${nl}` +
+      `• *Customer:* ${data.name}${nl}` +
       `• *Reference Photo:* ${uploadedImage ? 'Customer is attaching photo in this chat' : 'None'}${nl}` +
       `• *Special Notes:* ${data.notes || 'None'}`;
 
@@ -407,15 +406,9 @@ export function CustomCakeBuilder() {
 
               <div className="space-y-4">
                 <h3 className="font-serif font-bold text-lg">Your Details</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <Input placeholder="Full Name" {...register("name")} />
-                    {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name.message}</p>}
-                  </div>
-                  <div>
-                    <Input placeholder="WhatsApp Number" type="tel" {...register("phone")} />
-                    {errors.phone && <p className="text-red-500 text-xs mt-1">{errors.phone.message}</p>}
-                  </div>
+                <div>
+                  <Input placeholder="Full Name" {...register("name")} />
+                  {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name.message}</p>}
                 </div>
                 
                 <div>
@@ -485,4 +478,5 @@ export function CustomCakeBuilder() {
     </section>
   );
 }
+
 

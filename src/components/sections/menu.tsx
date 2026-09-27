@@ -36,8 +36,7 @@ export function MenuSection() {
     message: "",
     deliveryMode: "In-Store Pickup",
     address: "",
-    customerName: "",
-    customerPhone: ""
+    customerName: ""
   });
 
   const openOrderModal = (cake: Cake) => {
@@ -47,8 +46,7 @@ export function MenuSection() {
       message: "",
       deliveryMode: "In-Store Pickup",
       address: "",
-      customerName: "",
-      customerPhone: ""
+      customerName: ""
     });
     setOrderModalOpen(true);
   };
@@ -77,7 +75,7 @@ export function MenuSection() {
       `• *Message on Cake:* "${orderData.message || 'None'}"${nl}` +
       `• *Fulfillment:* ${deliveryString}${nl}` +
       `• *Address:* ${addressString}${nl}` +
-      `• *Customer:* ${orderData.customerName} (${orderData.customerPhone})${nl}` +
+      `• *Customer:* ${orderData.customerName}${nl}` +
       `*(Please confirm counter availability & final total with delivery charges!)*`;
 
     window.open(`https://wa.me/${shopPhone}?text=${encodeURIComponent(messageStr)}`, "_blank");
@@ -257,24 +255,13 @@ export function MenuSection() {
                 )}
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm font-medium mb-2">Your Name</label>
-                  <Input 
-                    required 
-                    value={orderData.customerName}
-                    onChange={e => setOrderData({...orderData, customerName: e.target.value})}
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium mb-2">Phone</label>
-                  <Input 
-                    required 
-                    type="tel"
-                    value={orderData.customerPhone}
-                    onChange={e => setOrderData({...orderData, customerPhone: e.target.value})}
-                  />
-                </div>
+              <div>
+                <label className="block text-sm font-medium mb-2">Your Name</label>
+                <Input 
+                  required 
+                  value={orderData.customerName}
+                  onChange={e => setOrderData({...orderData, customerName: e.target.value})}
+                />
               </div>
 
               <Button type="submit" className="w-full h-12 text-base mt-2 bg-[#25D366] hover:bg-[#128C7E] text-white">
