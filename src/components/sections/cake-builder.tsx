@@ -174,7 +174,7 @@ export function CustomCakeBuilder() {
       `• *Occasion / Date:* ${data.occasion} - ${data.date} @ ${data.timeSlot}${nl}` +
       `• *Flavor & Weight:* ${data.flavor} - ${data.weight}, ${data.tiers} (100% Eggless)${nl}` +
       `• *Message on Cake:* "${data.cakeText || 'None'}"${nl}` +
-      `• *Estimated Cake Base:* ₹${estimatedPrice}${nl}` +
+      `• *Estimated Base Price:* ?${estimatedPrice} (Final price confirmation pending design review)${nl}` +
       `• *Fulfillment:* ${deliveryString}${nl}` +
       `• *Address:* ${addressString}${nl}` +
       `• *Customer:* ${data.name}${nl}` +
@@ -399,9 +399,14 @@ export function CustomCakeBuilder() {
                   <div className="flex justify-between"><span className="text-muted-foreground">Date & Time:</span> <span className="font-medium">{formValues.date} @ {formValues.timeSlot}</span></div>
                   <div className="flex justify-between"><span className="text-muted-foreground">Cake Spec:</span> <span className="font-medium">{formValues.weight} {formValues.flavor}</span></div>
                   <div className="flex justify-between"><span className="text-muted-foreground">Details:</span> <span className="font-medium">{formValues.tiers}</span></div>
-                  <div className="pt-2 mt-2 border-t border-primary/10 flex justify-between items-center">
-                    <span className="font-bold text-base">Estimated Total:</span> 
-                    <span className="font-bold text-xl text-primary">₹{estimatedPrice}</span>
+                  <div className="pt-2 mt-2 border-t border-primary/10">
+                    <div className="flex justify-between items-center mb-1">
+                      <span className="font-bold text-base">Estimated Base Price:</span> 
+                      <span className="font-bold text-xl text-primary">₹{estimatedPrice}</span>
+                    </div>
+                    <p className="text-[10px] sm:text-xs text-muted-foreground leading-tight">
+                      ⚠️ Note: Starting price based on flavor & weight. Final price may vary depending on design complexity, tiers, and fondant work.
+                    </p>
                   </div>
                 </div>
               </div>
@@ -486,5 +491,7 @@ export function CustomCakeBuilder() {
     </section>
   );
 }
+
+
 
 
