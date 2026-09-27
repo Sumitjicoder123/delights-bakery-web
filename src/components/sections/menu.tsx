@@ -8,7 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { everydayCakes, Cake } from "@/data/cakes";
 import { cn } from "@/lib/utils";
-import { X } from "lucide-react";
+import { X, Store, Truck } from "lucide-react";
 export function MenuSection() {
   const [orderModalOpen, setOrderModalOpen] = useState(false);
   const [selectedCake, setSelectedCake] = useState<Cake | null>(null);
@@ -223,7 +223,7 @@ export function MenuSection() {
                       orderData.deliveryMode === 'Store Pickup' ? "bg-secondary/20 border-secondary ring-1 ring-secondary" : "bg-card"
                     )}
                   >
-                    <span className="font-semibold text-primary">🏪 In-Store Pickup</span>
+                    <div className="flex items-center gap-2 font-semibold text-primary"><Store className="w-5 h-5 text-[#4A2E18]" />In-Store Pickup</div>
                     <span className="text-xs font-normal text-muted-foreground">Abhilasha Residency Rd</span>
                   </button>
                   <button
@@ -234,7 +234,7 @@ export function MenuSection() {
                       orderData.deliveryMode === 'Home Delivery' ? "bg-secondary/20 border-secondary ring-1 ring-secondary" : "bg-card"
                     )}
                   >
-                    <span className="font-semibold text-primary">🛵 Home Delivery</span>
+                    <div className="flex items-center gap-2 font-semibold text-primary"><Truck className="w-5 h-5 text-[#4A2E18]" />Home Delivery</div>
                     <span className="text-xs font-normal text-muted-foreground">Delivery charges extra as per distance</span>
                   </button>
                 </div>

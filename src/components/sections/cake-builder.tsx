@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { format, addDays } from "date-fns";
-import { ChevronRight, ChevronLeft, Upload, Cake, Calendar, User, CheckCircle2, Trash2 } from "lucide-react";
+import { ChevronRight, ChevronLeft, Upload, Cake, Calendar, User, CheckCircle2, Trash2, Store, Truck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -420,7 +420,10 @@ export function CustomCakeBuilder() {
                       )}>
                         <div className="flex items-center gap-2">
                           <input type="radio" value="In-Store Pickup" {...register("deliveryMode")} className="accent-primary" />
-                          <span className="font-semibold text-primary">?? In-Store Pickup</span>
+                          <div className="flex items-center gap-2 font-semibold text-primary">
+                            <Store className="w-5 h-5 text-[#4A2E18]" />
+                            In-Store Pickup
+                          </div>
                         </div>
                         <span className="text-xs font-normal text-muted-foreground ml-6">Abhilasha Residency Rd</span>
                       </label>
@@ -431,7 +434,10 @@ export function CustomCakeBuilder() {
                       )}>
                         <div className="flex items-center gap-2">
                           <input type="radio" value="Delivery" {...register("deliveryMode")} className="accent-primary" />
-                          <span className="font-semibold text-primary">?? Home Delivery</span>
+                          <div className="flex items-center gap-2 font-semibold text-primary">
+                            <Truck className="w-5 h-5 text-[#4A2E18]" />
+                            Home Delivery
+                          </div>
                         </div>
                         <span className="text-xs font-normal text-muted-foreground ml-6">Delivery charges extra as per distance</span>
                       </label>
