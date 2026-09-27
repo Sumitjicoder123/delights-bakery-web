@@ -1,9 +1,9 @@
 import { NextResponse } from 'next/server';
-import fs from 'fs/promises';
-import path from 'path';
+import { kv } from '@vercel/kv';
+
 import initialCakes from '@/data/cakes.json';
 
-const filePath = path.join(process.cwd(), 'src', 'data', 'cakes.json');
+const CACHE_KEY = 'bakery_cakes_menu';
 
 // --- Simple in-memory rate limiter ---
 const requestCounts = new Map<string, { count: number; resetTime: number }>();
@@ -76,15 +76,24 @@ function validatePrice(price: any): number | null {
 
 async function readCakes() {
   try {
-    const fileContent = await fs.readFile(filePath, 'utf-8');
-    return JSON.parse(fileContent);
-  } catch {
+    const cakes = await kv.get(CACHE_KEY);
+    if (cakes && Array.isArray(cakes) && cakes.length > 0) {
+      return cakes;
+    }
+    return initialCakes;
+  } catch (err) {
+    console.error('KV Read Error:', err);
     return initialCakes;
   }
 }
 
 async function writeCakes(cakes: any[]) {
-  await fs.writeFile(filePath, JSON.stringify(cakes, null, 2), 'utf-8');
+  try {
+    await kv.set(CACHE_KEY, cakes);
+  } catch (err) {
+    console.error('KV Write Error:', err);
+    throw err;
+  }
 }
 
 // Public GET Endpoint
@@ -234,3 +243,4 @@ export async function DELETE(request: Request) {
     return NextResponse.json({ error: "An error occurred while deleting cake." }, { status: 500 });
   }
 }
+
