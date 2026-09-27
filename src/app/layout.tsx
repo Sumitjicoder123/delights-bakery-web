@@ -76,8 +76,7 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    // Add your Google Search Console verification code here when you get it
-    // google: "your-google-verification-code",
+    google: "A4Y_G6wG4UXCv4yA7UI48zEGnrfL3EAGJp_c3A97hUI",
   },
   category: "food",
 };
