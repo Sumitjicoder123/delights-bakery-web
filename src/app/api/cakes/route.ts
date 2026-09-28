@@ -150,7 +150,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Valid price (1 - 100,000) is required." }, { status: 400 });
     }
 
-    const description = sanitizeString(body.description || "100% Pure Veg & Eggless fresh cake prepared daily.", 300);
+    const description = sanitizeString(body.description || "", 300);
     const image = sanitizeImageUrl(body.image || body.image_url);
     const category = sanitizeString(body.category || "Daily Fresh", 50);
 

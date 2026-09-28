@@ -23,7 +23,7 @@ export default function AdminDashboard() {
   const [editingCakeImage, setEditingCakeImage] = useState<{ id: string; name: string; image: string } | null>(null);
   const [newCake, setNewCake] = useState({
     name: "",
-    description: "100% Pure Veg & Eggless fresh cake prepared daily.",
+    description: "",
       price: "",
       category: "Daily Fresh",
       image_url: "/cakes/WhiteForest%20400.jpeg"
@@ -255,7 +255,7 @@ export default function AdminDashboard() {
         setIsAddModalOpen(false);
         setNewCake({
           name: "",
-          description: "100% Pure Veg & Eggless fresh cake prepared daily.",
+          description: "",
       price: "",
       category: "Daily Fresh",
       image_url: "/cakes/WhiteForest%20400.jpeg"
@@ -563,7 +563,7 @@ export default function AdminDashboard() {
                 </div>
                 <div>
                   <label className="block text-sm font-medium mb-1">Description</label>
-                <Textarea required value={newCake.description} onChange={e => setNewCake({...newCake, description: e.target.value})} />
+                <Textarea required value={newCake.description} onChange={e => setNewCake({...newCake, description: e.target.value})} placeholder="Enter cake description..." />
               </div>
               <Button disabled={isUploading} type="submit" className="w-full bg-[#4A2E18] text-white">Save Cake</Button>
             </form>

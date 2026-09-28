@@ -143,7 +143,7 @@ export function MenuSection() {
                 "overflow-hidden border-border/50 transition-all flex flex-col group", 
                 cake.in_stock === false 
                   ? "opacity-75 cursor-not-allowed" 
-                  : "hover:border-primary/50 hover:shadow-md cursor-pointer"
+                  : "hover:border-primary/50 hover:shadow-md hover:scale-[1.02] active:scale-[0.98] active:shadow-sm touch-manipulation duration-300 ease-out cursor-pointer"
               )}
             >
               <div className="relative w-full aspect-square overflow-hidden rounded-t-xl bg-amber-50/50">
@@ -154,9 +154,7 @@ export function MenuSection() {
                   unoptimized={Boolean(cake.image && cake.image.startsWith('http'))}
                   className={cn("w-full h-full object-cover object-center transition-transform duration-300 group-hover:scale-105", cake.in_stock === false ? "grayscale" : "")}
                 />
-                <div className="absolute top-2 right-2 sm:top-3 sm:right-3 z-10 bg-white/95 backdrop-blur-sm text-green-700 text-[10px] sm:text-xs font-bold px-2 py-1 sm:px-3 rounded-full shadow-sm">
-                  {cake.dietary[0]}
-                </div>
+                
                 {cake.in_stock === false && (
                   <div className="absolute inset-0 z-20 flex items-center justify-center bg-black/40 backdrop-blur-[2px]">
                     <span className="bg-red-600 text-white font-bold px-4 py-2 rounded-full text-sm sm:text-base shadow-lg transform -rotate-12">
@@ -182,7 +180,7 @@ export function MenuSection() {
                         e.stopPropagation();
                         openOrderModal(cake);
                       }}
-                      className="w-full h-8 sm:h-12 text-xs sm:text-base rounded-md sm:rounded-lg bg-green-600 hover:bg-green-700 text-white font-medium"
+                      className="w-full h-8 sm:h-12 text-xs sm:text-base rounded-md sm:rounded-lg bg-green-600 hover:bg-green-700 text-white font-medium active:scale-95 transition-transform touch-manipulation"
                     >
                       Order Now
                     </Button>

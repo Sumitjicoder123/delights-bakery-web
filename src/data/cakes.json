@@ -101,7 +101,7 @@
   {
     "id": "blackforest",
     "name": "Black Forest",
-    "description": "100% Pure Veg & Eggless fresh cake prepared daily.",
+    "description": "",
     "basePrice": 400,
     "weightOptions": [
       "0.5 kg",
@@ -117,7 +117,7 @@
   {
     "id": "butterscotch-crunch",
     "name": "Butterscotch Crunch",
-    "description": "100% Pure Veg & Eggless fresh cake prepared daily.",
+    "description": "",
     "basePrice": 380,
     "weightOptions": [
       "0.5 kg",
@@ -133,7 +133,7 @@
   {
     "id": "chocho-bronze",
     "name": "Chocho Bronze",
-    "description": "100% Pure Veg & Eggless fresh cake prepared daily.",
+    "description": "",
     "basePrice": 350,
     "weightOptions": [
       "0.5 kg",
@@ -149,7 +149,7 @@
   {
     "id": "chocholate-crunch",
     "name": "Chocholate Crunch",
-    "description": "100% Pure Veg & Eggless fresh cake prepared daily.",
+    "description": "",
     "basePrice": 450,
     "weightOptions": [
       "0.5 kg",
@@ -165,7 +165,7 @@
   {
     "id": "chocholate-flex",
     "name": "Chocholate Flex",
-    "description": "100% Pure Veg & Eggless fresh cake prepared daily.",
+    "description": "",
     "basePrice": 450,
     "weightOptions": [
       "0.5 kg",
@@ -181,7 +181,7 @@
   {
     "id": "chocholate-truffle",
     "name": "Chocholate Truffle",
-    "description": "100% Pure Veg & Eggless fresh cake prepared daily.",
+    "description": "",
     "basePrice": 500,
     "weightOptions": [
       "0.5 kg",
@@ -197,7 +197,7 @@
   {
     "id": "choco-caremel-1",
     "name": "Choco Caremel Special",
-    "description": "100% Pure Veg & Eggless fresh cake prepared daily.",
+    "description": "",
     "basePrice": 380,
     "weightOptions": [
       "0.5 kg",
@@ -213,7 +213,7 @@
   {
     "id": "choco-caremel-2",
     "name": "Choco Caremel",
-    "description": "100% Pure Veg & Eggless fresh cake prepared daily.",
+    "description": "",
     "basePrice": 380,
     "weightOptions": [
       "0.5 kg",
@@ -229,7 +229,7 @@
   {
     "id": "choco-chips",
     "name": "Choco Chips",
-    "description": "100% Pure Veg & Eggless fresh cake prepared daily.",
+    "description": "",
     "basePrice": 400,
     "weightOptions": [
       "0.5 kg",
@@ -245,7 +245,7 @@
   {
     "id": "choco-delight",
     "name": "Choco Delight",
-    "description": "100% Pure Veg & Eggless fresh cake prepared daily.",
+    "description": "",
     "basePrice": 380,
     "weightOptions": [
       "0.5 kg",
@@ -261,7 +261,7 @@
   {
     "id": "choco-excellent",
     "name": "Choco Excellent",
-    "description": "100% Pure Veg & Eggless fresh cake prepared daily.",
+    "description": "",
     "basePrice": 400,
     "weightOptions": [
       "0.5 kg",
@@ -277,7 +277,7 @@
   {
     "id": "choco-vanilla",
     "name": "Choco Vanilla",
-    "description": "100% Pure Veg & Eggless fresh cake prepared daily.",
+    "description": "",
     "basePrice": 300,
     "weightOptions": [
       "0.5 kg",
@@ -293,7 +293,7 @@
   {
     "id": "choco-zebra",
     "name": "Choco Zebra",
-    "description": "100% Pure Veg & Eggless fresh cake prepared daily.",
+    "description": "",
     "basePrice": 380,
     "weightOptions": [
       "0.5 kg",
@@ -309,7 +309,7 @@
   {
     "id": "fruit-delight",
     "name": "Fruit Delight",
-    "description": "100% Pure Veg & Eggless fresh cake prepared daily.",
+    "description": "",
     "basePrice": 500,
     "weightOptions": [
       "0.5 kg",
@@ -325,7 +325,7 @@
   {
     "id": "kitkatchoccholate",
     "name": "Kitkat Choccholate",
-    "description": "100% Pure Veg & Eggless fresh cake prepared daily.",
+    "description": "",
     "basePrice": 750,
     "weightOptions": [
       "0.5 kg",
@@ -341,7 +341,7 @@
   {
     "id": "melting-moment",
     "name": "Melting Moment",
-    "description": "100% Pure Veg & Eggless fresh cake prepared daily.",
+    "description": "",
     "basePrice": 550,
     "weightOptions": [
       "0.5 kg",
@@ -357,7 +357,7 @@
   {
     "id": "mud-chocholate",
     "name": "Mud Chocholate",
-    "description": "100% Pure Veg & Eggless fresh cake prepared daily.",
+    "description": "",
     "basePrice": 300,
     "weightOptions": [
       "0.5 kg",
@@ -373,7 +373,7 @@
   {
     "id": "nutella-chocholate",
     "name": "Nutella Chocholate",
-    "description": "100% Pure Veg & Eggless fresh cake prepared daily.",
+    "description": "",
     "basePrice": 500,
     "weightOptions": [
       "0.5 kg",
@@ -389,7 +389,7 @@
   {
     "id": "redvelvet",
     "name": "Red Velvet",
-    "description": "100% Pure Veg & Eggless fresh cake prepared daily.",
+    "description": "",
     "basePrice": 450,
     "weightOptions": [
       "0.5 kg",
@@ -405,7 +405,7 @@
   {
     "id": "royal-chocholate",
     "name": "Royal Chocholate",
-    "description": "100% Pure Veg & Eggless fresh cake prepared daily.",
+    "description": "",
     "basePrice": 750,
     "weightOptions": [
       "0.5 kg",
@@ -421,7 +421,7 @@
   {
     "id": "strawberry-chocholate",
     "name": "Strawberry Chocholate",
-    "description": "100% Pure Veg & Eggless fresh cake prepared daily.",
+    "description": "",
     "basePrice": 450,
     "weightOptions": [
       "0.5 kg",
@@ -437,7 +437,7 @@
   {
     "id": "whiteforest",
     "name": "White Forest",
-    "description": "100% Pure Veg & Eggless fresh cake prepared daily.",
+    "description": "",
     "basePrice": 400,
     "weightOptions": [
       "0.5 kg",
@@ -453,7 +453,7 @@
   {
     "id": "cake-1790456301994",
     "name": "sing",
-    "description": "100% Pure Veg & Eggless fresh cake prepared daily.",
+    "description": "",
     "basePrice": 3939,
     "weightOptions": [
       "0.5 kg",
