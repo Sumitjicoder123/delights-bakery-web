@@ -77,7 +77,7 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    google: "A4Y_G6wG4UXCv4yA7UI48zEGnrfL3EAGJp_c3A97hUI",
+    google: "Yc1EDo0OvKadpWLlQZztnKrSdYPPa6Vt-EFk3HIqD-g",
   },
   category: "food",
 };
