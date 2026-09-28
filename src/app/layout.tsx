@@ -87,7 +87,7 @@ const bakeryJsonLd = {
   "@type": "Bakery",
   "name": "Delights Cakes",
   "alternateName": "Delights Cake Shop",
-  "image": `${SITE_URL}/hero-cake.jpg`,
+  "image": `${SITE_URL}/og-image.jpg`,
   "logo": `${SITE_URL}/icon.png`,
   "@id": SITE_URL,
   "url": SITE_URL,
@@ -122,8 +122,8 @@ const bakeryJsonLd = {
   "openingHoursSpecification": {
     "@type": "OpeningHoursSpecification",
     "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-    "opens": "09:30",
-    "closes": "23:59"
+    "opens": "09:00",
+    "closes": "22:30"
   },
   "aggregateRating": {
     "@type": "AggregateRating",
