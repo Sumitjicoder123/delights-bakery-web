@@ -10,10 +10,21 @@ import { Textarea } from "@/components/ui/textarea";
 import { everydayCakes, Cake } from "@/data/cakes";
 import { cn } from "@/lib/utils";
 import { X, Store, Truck } from "lucide-react";
+
+const CATEGORIES = ['All', 'Daily Fresh', 'Newly Launched', 'Pastries', 'Desserts'] as const;
+
 export function MenuSection() {
+
   const [orderModalOpen, setOrderModalOpen] = useState(false);
   const [selectedCake, setSelectedCake] = useState<Cake | null>(null);
   const [cakes, setCakes] = useState<Cake[]>(everydayCakes);
+  const [activeCategory, setActiveCategory] = useState<string>('All');
+  
+  const filteredCakes = cakes.filter(cake => {
+    if (activeCategory === 'All') return true;
+    const cakeCat = cake.category || 'Daily Fresh';
+    return cakeCat === activeCategory;
+  });
   
   useEffect(() => {
     async function fetchCakes() {
@@ -93,8 +104,34 @@ export function MenuSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 gap-3 sm:gap-6 lg:grid-cols-3">
-          {cakes.map((cake) => (
+                {/* Category Filter Pills */}
+        <div className="flex overflow-x-auto pb-4 mb-8 gap-2 hide-scrollbar justify-start md:justify-center">
+          {CATEGORIES.map(cat => (
+            <button
+              key={cat}
+              onClick={() => setActiveCategory(cat)}
+              className={cn(
+                "px-5 py-2 rounded-full whitespace-nowrap text-sm font-medium transition-colors border",
+                activeCategory === cat 
+                  ? "bg-primary text-primary-foreground border-primary" 
+                  : "bg-background text-foreground border-border hover:bg-secondary/20 hover:border-secondary"
+              )}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
+
+        {filteredCakes.length === 0 ? (
+          <div className="text-center py-12 px-4 bg-amber-50/50 rounded-xl border border-amber-100">
+            <p className="text-lg font-medium text-amber-900">Fresh items coming soon to this section!</p>
+            <Button variant="link" onClick={() => setActiveCategory('All')} className="mt-2 text-primary">
+              View All Items
+            </Button>
+          </div>
+        ) : (
+          <div className="grid grid-cols-2 gap-3 sm:gap-6 lg:grid-cols-3">
+            {filteredCakes.map((cake) => (
             <Card 
               key={cake.id} 
               onClick={() => {
@@ -152,9 +189,10 @@ export function MenuSection() {
                   )}
                 </div>
               </div>
-            </Card>
+                        </Card>
           ))}
-        </div>
+          </div>
+        )}
       </div>
 
       {/* Quick Order Modal */}

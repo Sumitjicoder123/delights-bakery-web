@@ -152,6 +152,7 @@ export async function POST(request: Request) {
 
     const description = sanitizeString(body.description || "100% Pure Veg & Eggless fresh cake prepared daily.", 300);
     const image = sanitizeImageUrl(body.image || body.image_url);
+    const category = sanitizeString(body.category || "Daily Fresh", 50);
 
     const cakes = await readCakes();
     const newCake = {
@@ -162,6 +163,7 @@ export async function POST(request: Request) {
       weightOptions: Array.isArray(body.weightOptions) && body.weightOptions.length > 0 
         ? body.weightOptions.map((w: any) => sanitizeString(w, 20))
         : ["0.5 kg", "1 kg"],
+      category,
       dietary: ["100% Eggless"],
       image,
       in_stock: body.in_stock !== false

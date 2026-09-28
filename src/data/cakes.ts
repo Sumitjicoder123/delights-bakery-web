@@ -7,6 +7,7 @@ export type Cake = {
   in_stock?: boolean;
   dietary: string[];
   image: string;
+  category?: 'Daily Fresh' | 'Newly Launched' | 'Pastries' | 'Desserts' | string;
 };
 
 import cakesData from "./cakes.json";

@@ -24,9 +24,10 @@ export default function AdminDashboard() {
   const [newCake, setNewCake] = useState({
     name: "",
     description: "100% Pure Veg & Eggless fresh cake prepared daily.",
-    price: "",
-    image_url: "/cakes/WhiteForest%20400.jpeg"
-  });
+      price: "",
+      category: "Daily Fresh",
+      image_url: "/cakes/WhiteForest%20400.jpeg"
+    });
 
   const [currentPin, setCurrentPin] = useState("");
 
@@ -238,8 +239,9 @@ export default function AdminDashboard() {
           name: newCake.name, 
           description: newCake.description,
           basePrice: priceNum,
-          image: newCake.image_url.trim(),
-          in_stock: true 
+            category: newCake.category,
+            image: newCake.image_url.trim(),
+            in_stock: true 
         })
       });
         
@@ -254,9 +256,10 @@ export default function AdminDashboard() {
         setNewCake({
           name: "",
           description: "100% Pure Veg & Eggless fresh cake prepared daily.",
-          price: "",
-          image_url: "/cakes/WhiteForest%20400.jpeg"
-        });
+      price: "",
+      category: "Daily Fresh",
+      image_url: "/cakes/WhiteForest%20400.jpeg"
+    });
       } else {
         const errorData = await res.json();
         alert("Error adding cake: " + errorData.error);
@@ -354,11 +357,14 @@ export default function AdminDashboard() {
                       <Edit2 className="w-3.5 h-3.5" />
                       <span>Edit</span>
                     </div>
-                    {cake.in_stock === false && (
-                      <div className="absolute inset-0 bg-white/60 flex items-center justify-center">
-                        <span className="text-[10px] font-bold text-red-600 bg-white px-1 py-0.5 rounded shadow-sm">SOLD OUT</span>
+                                          {cake.in_stock === false && (
+                        <div className="absolute inset-0 bg-white/60 flex items-center justify-center">
+                          <span className="text-[10px] font-bold text-red-600 bg-white px-1 py-0.5 rounded shadow-sm">SOLD OUT</span>
+                        </div>
+                      )}
+                      <div className="absolute top-1 right-1 bg-primary text-primary-foreground text-[9px] font-bold px-1.5 py-0.5 rounded shadow-sm">
+                        {cake.category || 'Daily Fresh'}
                       </div>
-                    )}
                   </div>
                   
                   <div className="flex-1 min-w-0">
@@ -541,8 +547,22 @@ export default function AdminDashboard() {
                 />
               </div>
 
-              <div>
-                <label className="block text-sm font-medium mb-1">Description</label>
+                              <div>
+                  <label className="block text-sm font-medium mb-1">Category</label>
+                  <select 
+                    required 
+                    value={newCake.category} 
+                    onChange={e => setNewCake({...newCake, category: e.target.value})}
+                    className="w-full border rounded-md p-2 text-sm"
+                  >
+                    <option value="Daily Fresh">Daily Fresh</option>
+                    <option value="Newly Launched">Newly Launched</option>
+                    <option value="Pastries">Pastries</option>
+                    <option value="Desserts">Desserts</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium mb-1">Description</label>
                 <Textarea required value={newCake.description} onChange={e => setNewCake({...newCake, description: e.target.value})} />
               </div>
               <Button disabled={isUploading} type="submit" className="w-full bg-[#4A2E18] text-white">Save Cake</Button>
