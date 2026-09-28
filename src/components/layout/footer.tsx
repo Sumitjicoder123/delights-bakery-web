@@ -5,7 +5,7 @@ import Link from "next/link";
 export function Footer() {
   return (
     <footer id="contact" className="bg-primary text-primary-foreground py-12">
-      <div className="container mx-auto px-4 md:px-6 grid gap-8 md:grid-cols-3">
+      <div className="container mx-auto px-4 md:px-6 grid gap-8 md:grid-cols-4">
         <div>
           <h3 className="font-serif text-2xl font-bold mb-4">Delights</h3>
           <p className="text-primary-foreground/80 text-sm max-w-xs">
@@ -46,10 +46,26 @@ export function Footer() {
             </li>
           </ul>
         </div>
+
+        <div>
+          <h4 className="font-bold text-lg mb-4 text-secondary">Legal</h4>
+          <ul className="space-y-2 text-sm text-primary-foreground/80">
+            <li>
+              <Link href="/terms" className="hover:text-secondary hover:underline transition-colors">
+                Terms &amp; Conditions
+              </Link>
+            </li>
+            <li>
+              <Link href="/privacy" className="hover:text-secondary hover:underline transition-colors">
+                Privacy Policy
+              </Link>
+            </li>
+          </ul>
+        </div>
       </div>
       
       <div className="container mx-auto px-4 md:px-6 mt-12 pt-6 border-t border-primary-foreground/20 text-center text-xs text-primary-foreground/60">
-        <p>&copy; {new Date().getFullYear()} Delights. All rights reserved.</p>
+        <p>&copy; {new Date().getFullYear()} Delights Cakes. All rights reserved. | <Link href="/terms" className="hover:underline">Terms</Link> | <Link href="/privacy" className="hover:underline">Privacy</Link></p>
       </div>
     </footer>
   );
