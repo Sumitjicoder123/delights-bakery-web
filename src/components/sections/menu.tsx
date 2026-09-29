@@ -20,7 +20,7 @@ export function MenuSection() {
   const [orderModalOpen, setOrderModalOpen] = useState(false);
   const [selectedCake, setSelectedCake] = useState<Cake | null>(null);
   const [cakes, setCakes] = useState<Cake[]>(everydayCakes);
-  const [orderError, setOrderError] = useState("");
+  const [errors, setErrors] = useState<{ delivery?: boolean; message?: boolean; name?: boolean }>({});
   const [activeCategory, setActiveCategory] = useState<string>('All');
   
   const filteredCakes = cakes.filter(cake => {
@@ -49,18 +49,18 @@ export function MenuSection() {
   const [orderData, setOrderData] = useState({
     weight: "0.5 kg",
     message: "",
-    deliveryMode: "In-Store Pickup",
+    deliveryMode: "",
     address: "",
     customerName: ""
   });
 
   const openOrderModal = (cake: Cake) => {
     setSelectedCake(cake);
-    setOrderError("");
+    setErrors({});
     setOrderData({
       weight: cake.weightOptions[0],
       message: "",
-      deliveryMode: "In-Store Pickup",
+      deliveryMode: "",
       address: "",
       customerName: ""
     });
@@ -71,15 +71,16 @@ export function MenuSection() {
     e.preventDefault();
     if (!selectedCake) return;
 
-    if (!orderData.deliveryMode) {
-      setOrderError("Please select a delivery preference.");
+    const newErrors: { delivery?: boolean; message?: boolean; name?: boolean } = {};
+    if (!orderData.deliveryMode) newErrors.delivery = true;
+    if (!orderData.message.trim()) newErrors.message = true;
+    if (!orderData.customerName.trim()) newErrors.name = true;
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
       return;
     }
-    if (!orderData.customerName.trim()) {
-      setOrderError("Please enter your name.");
-      return;
-    }
-    setOrderError("");
+    setErrors({});
 
     const shopPhone = SITE_CONFIG.contact.whatsapp;
     const nl = "\n";
@@ -257,10 +258,15 @@ export function MenuSection() {
               <div>
                 <label className="block text-sm font-medium mb-2">Name / Message on Cake</label>
                 <Input 
-                  placeholder="e.g., Happy Birthday Mom" 
-                  value={orderData.message}
-                  onChange={e => setOrderData({...orderData, message: e.target.value})}
-                />
+                    placeholder="e.g., Happy Birthday Mom" 
+                    value={orderData.message}
+                    onChange={e => {
+                      setOrderData({...orderData, message: e.target.value});
+                      if (errors.message) setErrors({...errors, message: undefined});
+                    }}
+                    className={cn(errors.message ? "border-red-500 focus-visible:ring-red-500" : "")}
+                  />
+                  {errors.message && <p className="text-red-500 text-xs mt-1">Please enter name/message on cake</p>}
               </div>
 
               <div>
@@ -268,10 +274,13 @@ export function MenuSection() {
                 <div className="flex flex-col gap-2 mb-3">
                   <button
                     type="button"
-                    onClick={() => setOrderData({ ...orderData, deliveryMode: 'Store Pickup' })}
+                    onClick={() => {
+                      setOrderData({ ...orderData, deliveryMode: 'Store Pickup' });
+                      if (errors.delivery) setErrors({...errors, delivery: undefined});
+                    }}
                     className={cn(
                       "text-left p-3 rounded-md border text-sm font-medium transition-colors flex flex-col gap-1",
-                      orderData.deliveryMode === 'Store Pickup' ? "bg-secondary/20 border-secondary ring-1 ring-secondary" : "bg-card"
+                      orderData.deliveryMode === 'Store Pickup' ? "bg-secondary/20 border-secondary ring-1 ring-secondary" : (errors.delivery ? "border-red-500 bg-red-50/10" : "bg-card")
                     )}
                   >
                     <div className="flex items-center gap-2 font-semibold text-primary"><Store className="w-5 h-5 text-[#4A2E18]" />In-Store Pickup</div>
@@ -279,17 +288,21 @@ export function MenuSection() {
                   </button>
                   <button
                     type="button"
-                    onClick={() => setOrderData({ ...orderData, deliveryMode: 'Home Delivery' })}
+                    onClick={() => {
+                      setOrderData({ ...orderData, deliveryMode: 'Home Delivery' });
+                      if (errors.delivery) setErrors({...errors, delivery: undefined});
+                    }}
                     className={cn(
                       "text-left p-3 rounded-md border text-sm font-medium transition-colors flex flex-col gap-1",
-                      orderData.deliveryMode === 'Home Delivery' ? "bg-secondary/20 border-secondary ring-1 ring-secondary" : "bg-card"
+                      orderData.deliveryMode === 'Home Delivery' ? "bg-secondary/20 border-secondary ring-1 ring-secondary" : (errors.delivery ? "border-red-500 bg-red-50/10" : "bg-card")
                     )}
                   >
                     <div className="flex items-center gap-2 font-semibold text-primary"><Truck className="w-5 h-5 text-[#4A2E18]" />Home Delivery</div>
                     <span className="text-xs font-normal text-muted-foreground">Delivery charges extra as per distance</span>
                   </button>
                 </div>
-                {orderData.deliveryMode === "Home Delivery" && (
+                  {errors.delivery && <p className="text-red-500 text-xs -mt-1 mb-3">Please select a delivery option</p>}
+                  {orderData.deliveryMode === "Home Delivery" && (
                   <div className="animate-in slide-in-from-top-2">
                     <Textarea 
                       placeholder="Enter full delivery address in Mira Road..."
@@ -309,13 +322,18 @@ export function MenuSection() {
               <div>
                 <label className="block text-sm font-medium mb-2">Your Name</label>
                 <Input 
-                  required 
-                  value={orderData.customerName}
-                  onChange={e => setOrderData({...orderData, customerName: e.target.value})}
-                />
+                    required 
+                    value={orderData.customerName}
+                    onChange={e => {
+                      setOrderData({...orderData, customerName: e.target.value});
+                      if (errors.name) setErrors({...errors, name: undefined});
+                    }}
+                    className={cn(errors.name ? "border-red-500 focus-visible:ring-red-500" : "")}
+                  />
+                  {errors.name && <p className="text-red-500 text-xs mt-1">Please enter your name</p>}
               </div>
 
-              {orderError && <p className="text-red-600 text-sm font-medium -mt-2 mb-2">{orderError}</p>}
+              
               <Button type="submit" className="w-full h-12 text-base mt-2 bg-[#25D366] hover:bg-[#128C7E] text-white">
                 Send Order to WhatsApp
               </Button>
