@@ -20,6 +20,7 @@ export function MenuSection() {
   const [orderModalOpen, setOrderModalOpen] = useState(false);
   const [selectedCake, setSelectedCake] = useState<Cake | null>(null);
   const [cakes, setCakes] = useState<Cake[]>(everydayCakes);
+  const [orderError, setOrderError] = useState("");
   const [activeCategory, setActiveCategory] = useState<string>('All');
   
   const filteredCakes = cakes.filter(cake => {
@@ -55,6 +56,7 @@ export function MenuSection() {
 
   const openOrderModal = (cake: Cake) => {
     setSelectedCake(cake);
+    setOrderError("");
     setOrderData({
       weight: cake.weightOptions[0],
       message: "",
@@ -68,6 +70,16 @@ export function MenuSection() {
   const submitQuickOrder = (e: React.FormEvent) => {
     e.preventDefault();
     if (!selectedCake) return;
+
+    if (!orderData.deliveryMode) {
+      setOrderError("Please select a delivery preference.");
+      return;
+    }
+    if (!orderData.customerName.trim()) {
+      setOrderError("Please enter your name.");
+      return;
+    }
+    setOrderError("");
 
     const shopPhone = SITE_CONFIG.contact.whatsapp;
     const nl = "\n";
@@ -303,6 +315,7 @@ export function MenuSection() {
                 />
               </div>
 
+              {orderError && <p className="text-red-600 text-sm font-medium -mt-2 mb-2">{orderError}</p>}
               <Button type="submit" className="w-full h-12 text-base mt-2 bg-[#25D366] hover:bg-[#128C7E] text-white">
                 Send Order to WhatsApp
               </Button>
