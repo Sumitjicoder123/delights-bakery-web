@@ -1,5 +1,7 @@
 /* eslint-disable */
 "use client";
+import { SITE_CONFIG } from "@/config/site";
+
 
 import { useState, useMemo } from "react";
 import { useForm } from "react-hook-form";
@@ -161,7 +163,7 @@ export function CustomCakeBuilder() {
       }
     }
 
-    const shopPhone = "919819134616";
+    const shopPhone = SITE_CONFIG.contact.whatsapp;
     const nl = "\n"; // New line
     const deliveryString = data.deliveryMode === 'Delivery' 
       ? 'Home Delivery (Delivery charges extra as per distance)' 

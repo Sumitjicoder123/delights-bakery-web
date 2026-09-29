@@ -1,5 +1,6 @@
 /* eslint-disable */
 import Link from "next/link";
+import { SITE_CONFIG } from "@/config/site";
 
 export const metadata = {
   title: "Privacy Policy",
@@ -67,7 +68,7 @@ export default function PrivacyPage() {
           <section>
             <h2 className="text-xl font-serif font-bold text-[#4A2E18]">7. Your Rights</h2>
             <p className="text-stone-700 leading-relaxed">
-              You have the right to request access to, correction of, or deletion of your personal information at any time. To exercise these rights, contact us via WhatsApp at <strong>+91 9819134616</strong>.
+              You have the right to request access to, correction of, or deletion of your personal information at any time. To exercise these rights, contact us via WhatsApp at <strong>{SITE_CONFIG.contact.displayPhone}</strong>.
             </p>
           </section>
 
@@ -81,7 +82,7 @@ export default function PrivacyPage() {
           <section>
             <h2 className="text-xl font-serif font-bold text-[#4A2E18]">9. Contact</h2>
             <p className="text-stone-700 leading-relaxed">
-              For any privacy-related questions or concerns, please reach out to us at <strong>+91 9819134616</strong> via call or WhatsApp.
+              For any privacy-related questions or concerns, please reach out to us at <strong>{SITE_CONFIG.contact.displayPhone}</strong> via call or WhatsApp.
             </p>
           </section>
         </div>

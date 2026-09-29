@@ -1,4 +1,6 @@
 "use client";
+import { SITE_CONFIG } from "@/config/site";
+
 
 import { useState } from "react";
 import { Star, CheckCircle2 } from "lucide-react";
@@ -8,7 +10,7 @@ export function ReviewsSection() {
   const [toastMessage, setToastMessage] = useState("");
 
   const googleReviewUrl = "https://www.google.com/search?q=Delights+Cakes+Mira+Road+Reviews#lrd=0x0:0x0,3,,,";
-  const whatsappNumber = "919819134616";
+  const whatsappNumber = SITE_CONFIG.contact.whatsapp;
   const whatsappFallbackUrl = `https://wa.me/${whatsappNumber}?text=Hi%20Delights,%20I%20have%20feedback%20regarding%20my%20recent%20order.`;
 
   const handleStarClick = (star: number) => {

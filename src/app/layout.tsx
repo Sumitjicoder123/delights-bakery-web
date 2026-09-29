@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
+import { SITE_CONFIG } from "@/config/site";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
     default: "Delights Cakes - Best Eggless Cake Shop in Mira Road | 100% Pure Veg",
     template: "%s | Delights Cakes Mira Road",
   },
-  description: "Delights Cakes is the Best Place in Mira Road for 100% Pure Veg & Eggless Fresh Cakes. Order custom birthday cakes, chocolate cakes, black forest, red velvet & 20+ flavors. Free delivery in Mira Road East. Call +91 9819134616.",
+  description: `Delights Cakes is the Best Place in Mira Road for 100% Pure Veg & Eggless Fresh Cakes. Order custom birthday cakes, chocolate cakes, black forest, red velvet & 20+ flavors. Free delivery in Mira Road East. Call ${SITE_CONFIG.contact.displayPhone}.`,
   keywords: [
     "Delights Cakes",
     "Best Place in Mira Road for Cakes",
@@ -91,7 +92,7 @@ const bakeryJsonLd = {
   "logo": `${SITE_URL}/icon.png`,
   "@id": SITE_URL,
   "url": SITE_URL,
-  "telephone": "+919819134616",
+  "telephone": SITE_CONFIG.contact.displayPhone,
   "priceRange": "\u20B9200 - \u20B92000",
   "servesCuisine": ["Cakes", "Pastries", "Desserts", "Bakery"],
   "menu": SITE_URL,
@@ -175,7 +176,7 @@ const faqJsonLd = {
       "name": "What are the prices for cakes at Delights?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Our cakes start from \u20B9250 for 0.5kg. Prices vary based on flavor and design. Check our full menu on the website or contact us on WhatsApp at +91 9819134616."
+        "text": `Our cakes start from \u20B9250 for 0.5kg. Prices vary based on flavor and design. Check our full menu on the website or contact us on WhatsApp at ${SITE_CONFIG.contact.displayPhone}.`
       }
     }
   ]
@@ -187,7 +188,7 @@ const localBusinessJsonLd = {
   "name": "Delights Cakes",
   "@id": `${SITE_URL}/#localbusiness`,
   "url": SITE_URL,
-  "telephone": "+919819134616",
+  "telephone": SITE_CONFIG.contact.displayPhone,
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "Abhilasha Residency Rd, Siddhi Vinayak Nagar, Mahajan Wadi, Mira Road East",

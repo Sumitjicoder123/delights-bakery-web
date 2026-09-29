@@ -1,5 +1,6 @@
 /* eslint-disable */
 import Link from "next/link";
+import { SITE_CONFIG } from "@/config/site";
 
 export const metadata = {
   title: "Terms & Conditions",
@@ -32,7 +33,7 @@ export default function TermsPage() {
           <section>
             <h2 className="text-xl font-serif font-bold text-[#4A2E18]">3. Ordering &amp; Custom Cake Designs</h2>
             <p className="text-stone-700 leading-relaxed">
-              Orders can be placed via our website or WhatsApp at <strong>+91 9819134616</strong>. Custom cake design requests require a detailed discussion and final confirmation via WhatsApp. The quoted price for custom designs is valid for 48 hours from the time of quote. A minimum of <strong>48 hours advance notice</strong> is required for all custom orders; elaborate tiered or wedding cakes require at least 2 weeks advance notice.
+              Orders can be placed via our website or WhatsApp at <strong>{SITE_CONFIG.contact.displayPhone}</strong>. Custom cake design requests require a detailed discussion and final confirmation via WhatsApp. The quoted price for custom designs is valid for 48 hours from the time of quote. A minimum of <strong>48 hours advance notice</strong> is required for all custom orders; elaborate tiered or wedding cakes require at least 2 weeks advance notice.
             </p>
           </section>
 
@@ -73,7 +74,7 @@ export default function TermsPage() {
           <section>
             <h2 className="text-xl font-serif font-bold text-[#4A2E18]">8. Contact</h2>
             <p className="text-stone-700 leading-relaxed">
-              For any questions regarding these terms, please contact us at <strong>+91 9819134616</strong> via call or WhatsApp.
+              For any questions regarding these terms, please contact us at <strong>{SITE_CONFIG.contact.displayPhone}</strong> via call or WhatsApp.
             </p>
           </section>
         </div>

@@ -1,6 +1,7 @@
 /* eslint-disable */
 import { MapPin, Phone } from "lucide-react";
 import Link from "next/link";
+import { SITE_CONFIG } from "@/config/site";
 
 export function Footer() {
   return (
@@ -32,7 +33,7 @@ export function Footer() {
             </li>
             <li className="flex items-center gap-2">
               <Phone className="h-5 w-5 shrink-0 text-secondary" />
-              <a href="tel:+919819134616" className="hover:underline transition-all">+91 98191 34616</a>
+              <a href={`tel:${SITE_CONFIG.contact.whatsapp}`} className="hover:underline transition-all">{SITE_CONFIG.contact.displayPhone}</a>
             </li>
           </ul>
         </div>

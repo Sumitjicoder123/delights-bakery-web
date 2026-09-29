@@ -1,5 +1,7 @@
 /* eslint-disable */
 "use client";
+import { SITE_CONFIG } from "@/config/site";
+
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
@@ -67,7 +69,7 @@ export function MenuSection() {
     e.preventDefault();
     if (!selectedCake) return;
 
-    const shopPhone = "919819134616";
+    const shopPhone = SITE_CONFIG.contact.whatsapp;
     const nl = "\n";
     const priceMultiplier = orderData.weight === "1 kg" ? 2 : 1;
     const finalPrice = selectedCake.basePrice * priceMultiplier;
